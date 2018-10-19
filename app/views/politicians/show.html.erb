@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @politician.name %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @politician.region %>
+</p>
+
+<p>
+  <strong>Party:</strong>
+  <%= @politician.party %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @politician.age %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @politician.gender %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @politician.city %>
+</p>
+
+<p>
+  <strong>Birth:</strong>
+  <%= @politician.birth %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @politician.school %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @politician.experience %>
+</p>
+
+<%= link_to 'Edit', edit_politician_path(@politician) %> |
+<%= link_to 'Back', politicians_path %>

@@ -1,0 +1,46 @@
+<style>
+.collection_radio_buttons{
+  display:inline-block;
+  margin: 10px;
+}
+textarea{
+  width: 500px;
+  height: 500px;
+}
+</style>
+<%= simple_form_for(politician) do |form| %>
+  <% if politician.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(politician.errors.count, "error") %> prohibited this politician from being saved:</h2>
+
+      <ul>
+      <% politician.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.input :name %>
+  <%= form.input :region %>
+  <%= form.input :party %>  
+  <%= form.input :age %>  
+  <%= form.input :gender, as: :radio_buttons, collection: [['女', '0'], ['男', '1']] %>   
+  <%= form.input :city %>  
+  <%= form.input :birth, as: :date %> 
+  <%= form.input :school, as: :text %> 
+  <%= form.input :experience, as: :text %> 
+  <%= form.button :submit %>
+<% end %>
+<hr>
+<br>
+<br>
+<h2>政見</h2>
+<% if politician.politics.present? %>
+  <% politician.politics.each do |p| %>
+    <%= simple_form_for(p) do |form| %>
+      <%= form.input :description, as: :text %> 
+      <%= form.input :type, collection: [['內政', '0'], ['交通', '1'],['經濟', '2'],['教育文化', '3'],['青年發展', '4'],['公民政治', '5']]%> 
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @politic.description %>
+</p>
+
+<p>
+  <strong>Politician:</strong>
+  <%= @politic.politician_id %>
+</p>
+
+<%= link_to 'Edit', edit_politic_path(@politic) %> |
+<%= link_to 'Back', politics_path %>

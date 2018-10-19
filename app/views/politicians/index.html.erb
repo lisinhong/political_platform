@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Politicians</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Region</th>
+      <th>Party</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>City</th>
+      <th>Birth</th>
+      <th>School</th>
+      <th>Experience</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @politicians.each do |politician| %>
+      <tr>
+        <td><%= politician.name %></td>
+        <td><%= politician.region %></td>
+        <td><%= politician.party %></td>
+        <td><%= politician.age %></td>
+        <% if politician.gender == 0 %>
+          <td>男</td>
+        <% else %>
+          <td>女</td>
+        <% end %>
+        <td><%= politician.city %></td>
+        <% if politician.birth.present? %>
+          <td><%= politician.birth.strftime("%F") %></td>
+        <% else %>
+          <td><%= politician.birth %></td>
+        <% end %>
+        <td><%= politician.school %></td>
+        <td><%= politician.experience %></td>
+        <td><%= link_to 'Show', politician %></td>
+        <td><%= link_to 'Edit', edit_politician_path(politician) %></td>
+        <td><%= link_to 'Destroy', politician, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= will_paginate @politicians, :previous_label => '上一頁', :next_label => '下一頁' %>
