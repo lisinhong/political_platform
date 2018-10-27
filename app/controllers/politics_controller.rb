@@ -15,10 +15,13 @@ class PoliticsController < ApplicationController
   # GET /politics/new
   def new
     @politic = Politic.new
+    @politic.politician_id = params[:p_id]
+    @hashtags = Hashtag.all
   end
 
   # GET /politics/1/edit
   def edit
+    @hashtags = Hashtag.all
   end
 
   # POST /politics
@@ -69,6 +72,6 @@ class PoliticsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def politic_params
-      params.require(:politic).permit(:description, :politician_id)
+      params.require(:politic).permit(:description, :politician_id, :first_type, hashtag_ids:[])
     end
 end

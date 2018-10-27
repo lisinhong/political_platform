@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   resources :politicians
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "politicians#index"
+  get 'hashtags' => 'politicians#hashtags'
+  post 'hashtags' => 'politicians#get_hashtags'
+  post 'hashtags/add' => 'politicians#add_hashtag'
 end

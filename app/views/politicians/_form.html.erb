@@ -36,11 +36,57 @@ textarea{
 <br>
 <br>
 <h2>政見</h2>
+<a class="btn btn-lg btn-success"href="/politics/new?p_id=<%= politician.id %>">新增政見</a>
 <% if politician.politics.present? %>
   <% politician.politics.each do |p| %>
-    <%= simple_form_for(p) do |form| %>
+    <h4>政見<%= p.id %></h4>
+    <%= simple_form_for(p) do |form| %>  
       <%= form.input :description, as: :text %> 
-      <%= form.input :type, collection: [['內政', '0'], ['交通', '1'],['經濟', '2'],['教育文化', '3'],['青年發展', '4'],['公民政治', '5']]%> 
+      <%= form.input :first_type, collection: [['內政', '0'], ['交通', '1'],['經濟', '2'],['教育文化', '3'],['青年發展', '4'],['公民政治', '5']],:include_blank => false, :input_html => {:class => "hashtag_politic_type"}%> 
+      <div class="hashtags-board">
+          <% @hashtags.each do |h| %>                  
+            <% if p.first_type == h.politic_type_id %>
+              <%= check_box_tag :hashtag_ids,h.id, form.object.hashtags.include?(h), :name => "politic[hashtag_ids][]",class:"boolean optional" %>
+              <%= h.name %>
+            <% end %>
+          <% end %>
+      </div>  
+      <input type="hidden" value=<%= p.hashtags.pluck(:id)%>>
+      <%= form.submit "更新政見" %>   
     <% end %>
   <% end %>
 <% end %>
+
+<script>
+$(function(){
+
+  $(".hashtag_politic_type").change(function(){
+    var select = $(this)
+    var type = select.val()
+    var hashtag_ids = select.parent().next().next().val()
+    console.log(hashtag_ids)
+    $.ajax({ 
+            type : "POST", 
+            url : "/hashtags/", 
+            data : {'type': type},
+            success : function(result) { 
+                console.log(result)
+                var element = ""
+                for(var i = 0; i < result.length; i++){
+                  if(hashtag_ids.includes(result[i].id)){
+                    element += `<input type="checkbox" name="politic[hashtag_ids][]" id="hashtag_ids" value="${result[i].id}" class="boolean optional" checked="checked">${result[i].name}`
+                  }
+                  else{
+                    element += `<input type="checkbox" name="politic[hashtag_ids][]" id="hashtag_ids" value="${result[i].id}" class="boolean optional">${result[i].name}`
+                  }
+                }
+                select.parent().next().html("")
+                select.parent().next().append(element)
+            }, 
+            error : function(result) { 
+                //handle the error
+            } 
+    });  
+  })
+})
+</script>

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hashtags</h1>
+
+<h5>Add Hashtags</h5>
+hashtag name: <input id="hashtags-name" type="text">
+hashtag type:
+<select id="hashtags-type">
+    <option value="0">內政</option>
+    <option value="1">交通</option>
+    <option value="2">經濟</option>
+    <option value="3">教育文化</option>
+    <option value="4">青年發展</option>
+    <option value="5">公民政治</option>
+</select>
+<button id="add-hashtags">Add</button>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hashtags.each do |hashtag| %>
+      <tr>
+        <td><%= hashtag.name %></td>
+        <td><%= hashtag.politic_type %></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+$(function(){
+    $("#add-hashtags").click(function(){
+        var name = $("#hashtags-name").val()
+        var type_id = $("#hashtags-type").val()
+        console.log("1312")
+        $.ajax({ 
+            type : "POST", 
+            url : "/hashtags/add", 
+            data : {'name': name, 'type_id': type_id},
+            success : function(result) { 
+                console.log(result)
+                window.location.reload()
+            }, 
+            error : function(result) { 
+                //handle the error
+            } 
+        }); 
+    })
+})
+
+</script>

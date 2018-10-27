@@ -15,10 +15,12 @@ class PoliticiansController < ApplicationController
   # GET /politicians/new
   def new
     @politician = Politician.new
+    @hashtags = Hashtag.all
   end
 
   # GET /politicians/1/edit
   def edit
+    @hashtags = Hashtag.all
   end
 
   # POST /politicians
@@ -59,6 +61,24 @@ class PoliticiansController < ApplicationController
       format.html { redirect_to politicians_url, notice: 'Politician was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def hashtags
+    @hashtags = Hashtag.all
+  end
+
+  def add_hashtag
+    name = params[:name]
+    type_id = params[:type_id]
+    hashtag = Hashtag.new(name: name, politic_type_id: type_id)
+    hashtag.save!
+  end
+
+  def get_hashtags
+    type = params[:type]
+    @hashtags = Hashtag.where(:politic_type_id => type)
+
+    render json: @hashtags
   end
 
   private
