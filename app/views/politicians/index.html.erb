@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Politicians</h1>
-
+<button class="btn btn-primary"><a href="/?order=all">顯示全部</a></button> 
+<button class="btn btn-success"><a href="/">顯示有政見候選人</a></button>
 <table>
   <thead>
     <tr>
@@ -13,8 +14,7 @@
       <th>City</th>
       <th>Birth</th>
       <th>School</th>
-      <th>Experience</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -37,8 +37,6 @@
           <td><%= politician.birth %></td>
         <% end %>
         <td><%= politician.school %></td>
-        <td><%= politician.experience %></td>
-        <td><%= link_to 'Show', politician %></td>
         <td><%= link_to 'Edit', edit_politician_path(politician) %></td>
         <td><%= link_to 'Destroy', politician, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

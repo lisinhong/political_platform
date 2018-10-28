@@ -4,7 +4,12 @@ class PoliticiansController < ApplicationController
   # GET /politicians
   # GET /politicians.json
   def index
-    @politicians = Politician.order(:region).paginate(:page => params[:page], :per_page =>100)
+
+    if params[:order].present?
+      @politicians = Politician.all.order(:region).paginate(:page => params[:page], :per_page =>100)
+    else 
+      @politicians = Politician.joins(:politics).group(:id).order(:region).paginate(:page => params[:page], :per_page =>100)
+    end
   end
 
   # GET /politicians/1
