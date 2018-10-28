@@ -46,9 +46,9 @@ textarea{
       <div class="hashtags-board">
           <% @hashtags.each do |h| %>  
             <%= "hashtag_id" %>            
-            <%= puts h.politic_type_id %>     
+            <%= h.politic_type_id %>     
             <%= "poli_id" %> 
-            <%= puts p.first_type %>               
+            <%= p.first_type %>               
             <% if p.first_type == h.politic_type_id %>
               <%= check_box_tag :hashtag_ids,h.id, form.object.hashtags.include?(h), :name => "politic[hashtag_ids][]",class:"boolean optional" %>
               <%= h.name %>
