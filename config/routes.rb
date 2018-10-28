@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   get 'hashtags' => 'politicians#hashtags'
   post 'hashtags' => 'politicians#get_hashtags'
   post 'hashtags/add' => 'politicians#add_hashtag'
+  post 'politics/destroy' => 'politics#destroy'
+  get  'hashtags/delete' => 'politicians#delete_hashtag'
   get  'playground' => "politicians#playground"
 end

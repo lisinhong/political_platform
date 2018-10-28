@@ -28,7 +28,7 @@ hashtag type:
       <tr>
         <td><%= hashtag.name %></td>
         <td><%= hashtag.politic_type %></td>
-        <td></td>
+        <td><a href="/hashtags/delete?id=<%= hashtag.id %>">刪除</a></td>
         <td></td>
       </tr>
     <% end %>

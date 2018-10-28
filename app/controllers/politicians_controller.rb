@@ -86,6 +86,14 @@ class PoliticiansController < ApplicationController
     render json: @hashtags
   end
 
+  def delete_hashtag
+    id = params[:id]
+    hashtag = Hashtag.find(id)
+    hashtag.destroy
+
+    redirect_to '/hashtags'
+  end
+
   def playground
     
   end

@@ -7,6 +7,9 @@ textarea{
   width: 500px;
   height: 500px;
 }
+a:visited{
+  color:white;
+}
 </style>
 <%= simple_form_for(politician) do |form| %>
   <% if politician.errors.any? %>
@@ -36,7 +39,7 @@ textarea{
 <br>
 <br>
 <h2>政見</h2>
-<a class="btn btn-lg btn-success"href="/politics/new?p_id=<%= politician.id %>">新增政見</a>
+<a class="btn btn-lg btn-success" href="/politics/new?p_id=<%= politician.id %>">新增政見</a>
 <% if politician.politics.present? %>
   <% politician.politics.each do |p| %>
     <h4>政見<%= p.id %></h4>
@@ -52,13 +55,31 @@ textarea{
           <% end %>
       </div>  
       <input type="hidden" value=<%= p.hashtags.pluck(:id)%>>
-      <%= form.submit "更新政見" %>   
+      <%= form.submit "更新政見", :class => "btn btn-sm btn-primary" %>   
+      <input type="button" class="btn btn-sm btn-danger delete-politic" data-id="<%= p.id %>" value="刪除">
     <% end %>
   <% end %>
 <% end %>
 
 <script>
 $(function(){
+
+  $(".delete-politic").click(function(){
+    var id = $(this).attr("data-id") 
+    var check = confirm("確定刪除?")
+    if(check){
+      $.ajax({ 
+          type : "POST", 
+          url : "/politics/destroy", 
+          data : {'id': id},
+          success : function(result) { 
+            window.location.reload()
+          }
+      })
+    }
+
+  })
+
 
   $(".hashtag_politic_type").change(function(){
     var select = $(this)
@@ -70,7 +91,6 @@ $(function(){
             url : "/hashtags/", 
             data : {'type': type},
             success : function(result) { 
-                console.log(result)
                 var element = ""
                 for(var i = 0; i < result.length; i++){
                   if(hashtag_ids.includes(result[i].id)){
