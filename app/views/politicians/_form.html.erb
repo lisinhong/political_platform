@@ -44,12 +44,8 @@ textarea{
       <%= form.input :description, as: :text %> 
       <%= form.input :first_type, collection: [['內政', '0'], ['交通', '1'],['經濟', '2'],['教育文化', '3'],['青年發展', '4'],['公民政治', '5']],:include_blank => false, :input_html => {:class => "hashtag_politic_type"}%> 
       <div class="hashtags-board">
-          <% @hashtags.each do |h| %>  
-            <%= "hashtag_id" %>            
-            <%= h.politic_type_id %>     
-            <%= "poli_id" %> 
-            <%= p.first_type %>               
-            <% if p.first_type == h.politic_type_id %>
+          <% @hashtags.each do |h| %>             
+            <% if p.first_type.to_i == h.politic_type_id.to_i %>
               <%= check_box_tag :hashtag_ids,h.id, form.object.hashtags.include?(h), :name => "politic[hashtag_ids][]",class:"boolean optional" %>
               <%= h.name %>
             <% end %>
