@@ -1,7 +1,7 @@
 require 'csv'
 namespace :csv do 
     task load_data: :environment do
-        CSV.open('../data.csv', :row_sep => "\r\n", :col_sep => ",") do |csv|
+        CSV.open(Dir.getwd+'/data.csv', :row_sep => "\r\n", :col_sep => ",") do |csv|
             counter = 0
             csv.each do |row|
                 if row[0].present?
