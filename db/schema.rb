@@ -45,14 +45,7 @@ ActiveRecord::Schema.define(version: 20181021082635) do
     t.integer "politician_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "first_type"
-  end
-
-  create_table "simple_hashtag_hashtags", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_simple_hashtag_hashtags_on_name"
+    t.string "first_type"
   end
 
 end
