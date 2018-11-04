@@ -42,4 +42,16 @@ namespace :csv do
             end
         end
     end
+
+    task load_image_data: :environment do
+        CSV.open(Dir.getwd+'/lib/tasks/image_data.csv', :row_sep => "\r\n", :col_sep => ",") do |csv|
+            csv.each do |row|
+                puts row[0]
+                politician = Politician.find_by(name: row[0])
+                if politician.present?
+                    politician.update(image_url: row[1])
+                end
+            end
+        end
+    end
 end
