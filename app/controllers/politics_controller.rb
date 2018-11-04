@@ -54,6 +54,14 @@ class PoliticsController < ApplicationController
     end
   end
 
+  def ajax_update
+    datas = JSON.parse(params["data"])
+    datas.each do |data|
+      p = Politic.find(data[0])
+      p.update(description: data[1], first_type: data[2], hashtag_ids: data[3])
+    end
+  end
+
   # DELETE /politics/1
   # DELETE /politics/1.json
   def destroy

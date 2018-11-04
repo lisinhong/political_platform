@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'hashtags' => 'politicians#get_hashtags'
   post 'hashtags/add' => 'politicians#add_hashtag'
   post 'politics/destroy' => 'politics#destroy'
+  post 'ajax_update' => 'politics#ajax_update'
   get  'hashtags/delete' => 'politicians#delete_hashtag'
   get  'playground' => "politicians#playground"
 end
