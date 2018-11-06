@@ -34,7 +34,7 @@ Devise.setup do |config|
 
   config.omniauth :facebook, "2211058662481092", ENV['FB_SECRET'],
   scope: 'email',
-  info_fields: 'email, name, link',
+  info_fields: 'email, name',
   secure_image_url: true,
   image_size:  'large'
   # ==> Configuration for any authentication mechanism
