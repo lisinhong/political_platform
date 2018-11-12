@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   post 'ajax_update' => 'politics#ajax_update'
   get  'hashtags/delete' => 'politicians#delete_hashtag'
   get  'playground' => "playgrounds#index"
-  post 'playground' => "playgrounds#render_result"
+
+  # API 
+  post 'api/get_second_step_questions' => "playgrounds#get_second_step_questions"
 end

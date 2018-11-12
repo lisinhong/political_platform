@@ -12,8 +12,12 @@ class PlaygroundsController < ApplicationController
     end
 
     def get_second_step_questions
-        query = Hash[params[:q].sort_by{|k, v| v}.reverse]
+
+        puts @params
+        query = Hash[params.permit([:'0',:'1',:'2',:'3',:'4',:'5']).to_h.sort_by{|k, v| v}.reverse]
         select_type = query.keys[0..2]
+
+        puts query
         @questions = Question.where(p_type: select_type).order(:p_type)
 
 
