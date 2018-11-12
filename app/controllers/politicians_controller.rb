@@ -69,7 +69,7 @@ class PoliticiansController < ApplicationController
   end
 
   def hashtags
-    @hashtags = Hashtag.all
+    @hashtags = Hashtag.all.order(:politic_type_id)
   end
 
   def add_hashtag

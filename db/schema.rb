@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181104150625) do
+ActiveRecord::Schema.define(version: 20181112113058) do
 
   create_table "hashtags", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -47,6 +47,23 @@ ActiveRecord::Schema.define(version: 20181104150625) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "first_type"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "p_type"
+    t.string "q_type"
+    t.string "o_comment"
+    t.string "m_comment"
+    t.string "option_a"
+    t.string "option_b"
+    t.string "option_c"
+    t.string "option_d"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "option_a_key"
+    t.integer "option_b_key"
+    t.integer "option_c_key"
+    t.integer "option_d_key"
   end
 
   create_table "simple_hashtag_hashtags", force: :cascade do |t|

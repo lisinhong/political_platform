@@ -17,6 +17,7 @@ hashtag type:
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Type</th>
       <th colspan="2"></th>
@@ -26,6 +27,7 @@ hashtag type:
   <tbody>
     <% @hashtags.each do |hashtag| %>
       <tr>
+        <td><%= hashtag.id %></td>
         <td><%= hashtag.name %></td>
         <td><%= hashtag.politic_type %></td>
         <td><a href="/hashtags/delete?id=<%= hashtag.id %>">刪除</a></td>

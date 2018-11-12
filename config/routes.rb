@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post 'politics/destroy' => 'politics#destroy'
   post 'ajax_update' => 'politics#ajax_update'
   get  'hashtags/delete' => 'politicians#delete_hashtag'
-  get  'playground' => "politicians#playground"
+  get  'playground' => "playgrounds#index"
+  post 'playground' => "playgrounds#render_result"
 end
