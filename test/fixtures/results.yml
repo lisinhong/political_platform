@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  affairs: 1
+  transportation: 1
+  economic: 1
+  education: 1
+  teen: 1
+  citizen: 1
+
+two:
+  name: MyString
+  email: MyString
+  affairs: 1
+  transportation: 1
+  economic: 1
+  education: 1
+  teen: 1
+  citizen: 1

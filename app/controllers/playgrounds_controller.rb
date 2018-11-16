@@ -45,10 +45,24 @@ class PlaygroundsController < ApplicationController
             end
         end
 
+
         politician = Politician.find(result_id)
         politics = politician.politics
+        type_ids = politics.pluck(:first_type)
 
-        render json: [politician, politics]
+
+        result = Result.new(name: current_user.try(:name), 
+                    email: current_user.try(:email),   
+                    affairs: type_ids.count(0),
+                    transportation: type_ids.count(1),
+                    economic: type_ids.count(2),
+                    education: type_ids.count(3),
+                    teen: type_ids.count(4),
+                    citizen: type_ids.count(5))
+        result.save
+
+        
+        render json: [politician, politics, result]
 
     end
 

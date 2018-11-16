@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181113155133) do
+ActiveRecord::Schema.define(version: 20181116162028) do
 
   create_table "hashtags", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 20181113155133) do
     t.integer "option_b_key"
     t.integer "option_c_key"
     t.integer "option_d_key"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "affairs"
+    t.integer "transportation"
+    t.integer "economic"
+    t.integer "education"
+    t.integer "teen"
+    t.integer "citizen"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "simple_hashtag_hashtags", force: :cascade do |t|
