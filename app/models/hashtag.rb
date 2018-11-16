@@ -1,6 +1,6 @@
 class Hashtag < ApplicationRecord
      has_many :hashtags_politics
-     has_many :politcs, :through => :hashtags_politics
+     has_many :politics, :through => :hashtags_politics
      accepts_nested_attributes_for :hashtags_politics
      after_find :get_politic_type
      attr_accessor :politic_type
