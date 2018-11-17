@@ -1,84 +1,95 @@
 <template>
   <div id="outcome" class="row">
     <div class="intro-wrapper col-12" v-if="showIntro">
-      <div class="intro text-center row justify-content-center align-items-center">
+      <div class="intro text-center justify-content-center align-items-center">
         <div class="intro-text col-12">
           <p>2018年11月底</p>
           <p>某太平洋島國上</p>
           <p>眼前所見</p>
           <p>是一張張殷切期待的臉孔</p>
-          <p>螢幕上</p>
-          <p>各家新聞忙著報導一位政治素人</p>
+          <p>螢幕上，各家新聞忙著報導一位政治素人</p>
           <p>從血戰下生存的傳奇</p>
           <p>這是新時代下</p>
           <p>一個議員的誕生</p>
-          <p>而後，改變才正要開始</p>
+          <p>而後</p>
+          <p>改變才正要開始</p>
           <p>......</p>
         </div>
       </div>
     </div>
-    <div class="outcome-wrapper col-12" v-if="showOutcome">
-      <div class="outcome row justify-content-center align-items-center">
-        <p class="title col-12 text-center">結果出爐！你跟這位議員關心的議題最相近</p>
-        <div class="card-wrapper col-3">
-          <input type="checkbox" id="flip-card">
-          <div class="card-inner row justify-content-center">
-            <div class="card card-front col-12">
-              <div class="row justify-content-center align-items-center">
-                <div class="photo-wrapper col-12 text-center">
-                  <div class="photo"></div>
-                </div>
-                <div class="name col-12 text-center">姓名</div>
-                <div class="radar col-6"></div>
-                <div class="policies col-6">
-                  <p class="policy">政見</p>
-                  <p class="policy">政見</p>
-                  <p class="policy">政見</p>
+    <transition name="fade">
+      <div class="outcome-wrapper col-12" v-if="showOutcome">
+        <div class="outcome row justify-content-center align-items-center">
+          <p class="title col-12 text-center">結果出爐！你跟這位議員關心的議題最相近</p>
+          <div class="card-wrapper col-10 col-sm-8 col-md-5 col-lg-3">
+            <input type="checkbox" id="flip-card" v-model="showShare">
+            <div class="card-inner row justify-content-center">
+              <div class="card card-front col-12">
+                <div class="row justify-content-center align-items-center">
+                  <div class="photo-wrapper col-12 text-center">
+                    <div class="photo"></div>
+                  </div>
+                  <div class="name col-12 text-center">姓名</div>
+                  <div class="radar col-6"></div>
+                  <div class="policies col-6">
+                    <p class="policy">政見</p>
+                    <p class="policy">政見</p>
+                    <p class="policy">政見</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="card card-back col-12">
-              <div class="row justify-content-center align-items-center">
-                <div class="col-12">
-                  <div class="row align-items-center">
-                    <div class="number-wrapper col-4 text-center">
-                    <div class="number">87</div>
+              <div class="card card-back col-12">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-12">
+                    <div class="row align-items-center">
+                      <div class="number-wrapper col-4 text-center">
+                      <div class="number">87</div>
+                    </div>
+                    <div class="name col-8">姓名</div>
+                    </div>
                   </div>
-                  <div class="name col-8">姓名</div>
+                  <div class="photo-wrapper col-12 text-center">
+                    <div class="photo"></div>
                   </div>
-                </div>
-                <div class="photo-wrapper col-12 text-center">
-                  <div class="photo"></div>
-                </div>
-                <div class="slogan col-12">
-                  懇請支持，搶救
-                </div>
-                <div class="policies col-12">
-                  <p class="policy">政見</p>
+                  <div class="slogan col-12">
+                    懇請支持，搶救
+                  </div>
+                  <div class="policies col-12">
+                    <p class="policy">政見</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-12"></div>
-        <div class="col-3">
-          <div class="row justify-content-between align-items-center">
-            <div class="col-12 col-md-6 text-center">
-              <label class="button" for="flip-card">
-                翻面
-                <span class="dot"></span>
-              </label>
-            </div>
-            <div class="col-12 col-md-6 text-center">
-              <div class="button">
-                再玩一次
-                <span class="dot"></span>                
+          <div class="col-12">
+            <div class="row justify-content-center">
+              <div class="col-10 col-sm-8 col-md-5 col-lg-3">
+                <div class="row justify-content-between align-items-center">
+                  <div class="col-6 text-center">
+                    <label class="button" for="flip-card">
+                      翻面
+                      <span class="dot"></span>
+                    </label>
+                  </div>
+                  <div class="col-6 text-center" v-if="!showShare">
+                    <div class="button" @click="playAgain">
+                      再玩一次
+                      <span class="dot"></span>                
+                    </div>
+                  </div>
+                  <div class="col-6 text-center" v-if="showShare">
+                    <div class="button">
+                      分享
+                      <span class="dot"></span>                
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            </div>
           </div>
-        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -88,7 +99,8 @@ export default {
   data() {
     return {
       showIntro: true,
-      showOutcome: false
+      showOutcome: false,
+      showShare: false
     };
   },
   mounted() {
@@ -96,6 +108,11 @@ export default {
       this.showIntro = false;
       this.showOutcome = true;
     }, 10000);
+  },
+  methods: {
+    playAgain() {
+      this.$emit('play-again');
+    }
   }
 };
 </script>
@@ -103,6 +120,7 @@ export default {
 <style lang='scss' scoped>
 #outcome {
   min-height: 100vh;
+  padding: 10px 0;
 }
 .btn-check {
   border: none;
@@ -129,7 +147,7 @@ export default {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  animation: scroll 10s linear;
+  animation: scroll 12s linear;
 }
 .outcome-wrapper {
   min-height: 100vh;
@@ -137,6 +155,9 @@ export default {
     font-family: "Zpix";
     font-size: 2.5em;
   }
+}
+.outcome {
+  height: 100%;
 }
 .card-wrapper {
   perspective: 1000px;
@@ -147,6 +168,7 @@ export default {
     transition: transform 0.6s;
     transform-style: preserve-3d;
     height: 100%;
+    animation: flipCard 2.5s ease;
   }
   .card {
     border: 2px solid;
@@ -179,6 +201,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #fff;
     }
   }
   .card-front {
@@ -187,6 +210,11 @@ export default {
   .card-back {
     transform: rotateY(180deg);
     z-index: 1;
+    background: linear-gradient(
+      225deg,
+      rgba(97, 182, 231, 0.6),
+      rgba(215, 88, 166, 0.6)
+    );
     .name {
       margin: 0;
     }
@@ -200,6 +228,20 @@ export default {
     }
   }
 }
+@media screen and (max-width: 767px) {
+  .outcome-wrapper {
+    .title {
+      font-size: 8vw;
+    }
+  }
+  .intro-text {
+    font-size: 8vw;
+  }
+  .button {
+    font-size: 1em;
+    width: 100px;
+  }
+}
 
 @keyframes scroll {
   0% {
@@ -207,6 +249,14 @@ export default {
   }
   100% {
     top: -170%;
+  }
+}
+@keyframes flipCard {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(1800deg);
   }
 }
 </style>
