@@ -1,6 +1,10 @@
 <div id='app'></div>
 <%= stylesheet_link_tag '/playground/dist/css/playground.css' %>
 <%= javascript_include_tag '/playground/dist/js/playground.js' %>
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+<%= social_share_button_tag("分享出去",:url => @share_url, desc: "Test Text") %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.27.0/js/vendor/jquery.ui.widget.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.27.0/js/jquery.fileupload.js" crossorigin="anonymous"></script>

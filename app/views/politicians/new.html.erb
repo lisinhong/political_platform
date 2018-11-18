@@ -1,4 +1,7 @@
 <h1>New Politician</h1>
-
+<%= simple_form_for User.all.last, url: '/playground' do |f| %>
+    <%= f.input :image,as: :file %>
+    <%= f.submit %>
+<% end %>
 <%= render 'form', politician: @politician %>
 

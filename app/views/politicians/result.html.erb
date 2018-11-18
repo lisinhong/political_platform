@@ -1,0 +1,49 @@
+<style>
+.pixel {
+	display: block;
+	position: relative;
+	width: 300px;
+	height: 80px;
+	color: white;
+	font-size: 30px;
+	text-transform: uppercase;
+	background-color: #06C1DE;
+	border: none;
+	margin-top: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 24px;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-family: 'Press Start 2P', cursive;
+	outline: none;
+}
+.pixel::after {
+	content: "";
+	position: absolute;
+	width: 300px;
+	height: 80px;
+	top: 12px;
+	left: 0;
+	background-color: #047E91;
+	border-radius: 24px;
+	z-index: -1;
+}
+.pixel:hover {
+	background-color: #06B6D1;
+}
+.pixel:active {
+	top: 10px;
+}
+.pixel:active::after {
+	top: 2px;
+}
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <img src=<%= @user_image_url %> alt="">
+    </div>
+    <button class="pixel">開始你的議員之路！</button>
+</div>

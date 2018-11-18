@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :politics
   resources :politicians
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "politicians#index"
+  root "playgrounds#index"
   get 'hashtags' => 'politicians#hashtags'
   post 'hashtags' => 'politicians#get_hashtags'
   post 'hashtags/add' => 'politicians#add_hashtag'
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get  'hashtags/delete' => 'politicians#delete_hashtag'
   get  'playground' => "playgrounds#index"
   post 'playground' => "playgrounds#upload"
-
+  get  'result/:uid' => 'playgrounds#result'
   # API 
   post 'api/get_second_step_questions' => "playgrounds#get_second_step_questions"
   post 'api/get_result' => "playgrounds#get_result"
