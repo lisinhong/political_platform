@@ -115,6 +115,7 @@ export default {
   font-size: 5em;
   color: #c2502a;
   letter-spacing: 0.2em;
+  animation: twinkling 2s linear;
 }
 .slot-wrapper {
   .slot {
@@ -256,6 +257,23 @@ export default {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes twinkling {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>
