@@ -479,7 +479,7 @@ a {
     transform: rotateY(180deg);
     z-index: 1;
     background: url(../assets/card.png) no-repeat center center;
-    background-size: 110%;
+    background-size: 115%;
     .name {
       margin: 0;
       color: #ff0000;
