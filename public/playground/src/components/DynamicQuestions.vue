@@ -89,7 +89,7 @@ export default {
     }, 2000);
   },
   beforeDestroy() {
-    // 傳給後端
+    this.$emit('get-result', this.choosed);
   },
   watch: {
     choosed() {

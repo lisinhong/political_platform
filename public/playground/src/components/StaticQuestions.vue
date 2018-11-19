@@ -205,14 +205,12 @@ export default {
     setTimeout(() => {
       this.showIntro = false;
       this.showQuestion = 1;
-    }, 10000);
+    }, 1000);
   },
   beforeDestroy() {
     this.choosed.forEach(element => {
       this.answers[element]++;
     });
-    console.log(this.answers);
-    // 傳給後端
     this.$emit("get-dynamic-questions", this.answers);
   },
   watch: {
