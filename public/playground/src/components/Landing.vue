@@ -5,12 +5,13 @@
         <img src="../../public/title.png" alt="title">
       </div>
       <div class="slogan text-right">
-        11/24（週六）回家投票
+        第一次參選就上手！<br>
+        如果參政，你會是哪個議員？
       </div>
       <div class="start text-center">
         <!-- <img src="../../public/start.png" alt="start"> -->
         <div class="button" @click="nextStep">
-          開始遊戲
+          開始參選
           <span class="dot"></span>
         </div>
       </div>
@@ -23,7 +24,7 @@ export default {
   name: "Landing",
   methods: {
     nextStep() {
-      this.$emit('next-step');
+      this.$emit("next-step");
     }
   }
 };
@@ -36,14 +37,22 @@ export default {
 }
 .pre-game {
   width: 375px;
+  max-width: 100%;
 }
 .slogan {
-  font-family: "JF-Dot-Kappa-20-Bold";
+  font-family: "Zpix";
   margin-top: 10px;
-  margin-bottom: 20px;
-  letter-spacing: 2px;
+  margin-bottom: 40px;
 }
-.start img {
-  cursor: pointer;
+.title {
+  img {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .slogan {
+    font-size: 4.4vw;
+  }
 }
 </style>
