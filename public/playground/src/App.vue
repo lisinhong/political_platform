@@ -16,6 +16,7 @@
   </div>
 </template>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 import Landing from "./components/Landing.vue";
 import StaticQuestions from "./components/StaticQuestions.vue";
@@ -61,8 +62,8 @@ export default {
       $.ajax({
         type: "POST",
         url: "/api/get_result",
-        // data: { data: this.dynamicQuestions },
-        data: { data: [1, 3, 4] },
+        data: { data: this.dynamicQuestions },
+        // data: { data: [1, 3, 4] },
         success: (result) => {
           this.result = result;
         },

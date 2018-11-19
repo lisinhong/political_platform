@@ -9,7 +9,6 @@
         如果參政，你會是哪個議員？
       </div>
       <div class="start text-center">
-        <!-- <img src="../../public/start.png" alt="start"> -->
         <div class="button" @click="nextStep">
           開始參選
           <span class="dot"></span>
