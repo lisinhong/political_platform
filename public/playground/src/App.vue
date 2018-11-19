@@ -48,10 +48,10 @@ export default {
         url: "/api/get_second_step_questions",
         data: staticQuestions,
         success: (result) => {
-          console.log(result);
-          this.dynamicQuestions.push(result[0]); // 申論
+          // console.log(result);
+          this.dynamicQuestions.push(result[1]); // 申論
           this.dynamicQuestions.push(result[4]); // 交叉詰問
-          this.dynamicQuestions.push(result[8]); // 結論
+          this.dynamicQuestions.push(result[6]); // 結論
         },
         error: (error) => {
           console.log(error);
@@ -59,12 +59,14 @@ export default {
       });
     },
     getResult(dynamicQuestions) {
+      console.log(dynamicQuestions)
       $.ajax({
         type: "POST",
         url: "/api/get_result",
         data: { data: dynamicQuestions },
         // data: { data: [1, 3, 4] },
         success: (result) => {
+          console.log(result);
           this.result = result;
         },
         error: (error) => {

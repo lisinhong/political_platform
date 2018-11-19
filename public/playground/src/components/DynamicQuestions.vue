@@ -110,12 +110,14 @@ export default {
   height: 100vh;
 }
 .intro-text {
+  opacity: 0;
   font-style: italic;
   font-family: "JF-Dot-Kappa-20-Bold";
   font-size: 5em;
   color: #c2502a;
   letter-spacing: 0.2em;
-  animation: twinkling 2s linear;
+  transition: opacity 1s;
+  animation: twinkling 1s linear 2;
 }
 .slot-wrapper {
   .slot {
@@ -263,13 +265,7 @@ export default {
   0% {
     opacity: 0;
   }
-  25% {
-    opacity: 1;
-  }
   50% {
-    opacity: 0;
-  }
-  75% {
     opacity: 1;
   }
   100% {
