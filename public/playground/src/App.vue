@@ -62,7 +62,7 @@ export default {
       $.ajax({
         type: "POST",
         url: "/api/get_result",
-        data: { data: this.dynamicQuestions },
+        data: { data: dynamicQuestions },
         // data: { data: [1, 3, 4] },
         success: (result) => {
           this.result = result;
