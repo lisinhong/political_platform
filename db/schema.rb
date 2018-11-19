@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20181117061309) do
     t.integer "politician_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "first_type"
+    t.string "first_type"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20181117061309) do
     t.integer "option_d_key"
   end
 
+<<<<<<< HEAD
   create_table "results", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -87,6 +88,8 @@ ActiveRecord::Schema.define(version: 20181117061309) do
     t.index ["name"], name: "index_simple_hashtag_hashtags_on_name"
   end
 
+=======
+>>>>>>> complete layout
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
