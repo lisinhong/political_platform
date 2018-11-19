@@ -5,7 +5,15 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    config.optimization.delete('splitChunks')
+    config.optimization.delete('splitChunks');
+    config.module
+      .rule('images')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => {
+        options.limit = 0
+        return options
+      })
   },
   css: {
     extract: {
