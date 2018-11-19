@@ -205,7 +205,7 @@ export default {
     setTimeout(() => {
       this.showIntro = false;
       this.showQuestion = 1;
-    }, 1000);
+    }, 10000);
   },
   beforeDestroy() {
     this.choosed.forEach(element => {
@@ -260,6 +260,7 @@ export default {
   }
   .middle {
     position: relative;
+    height: 300px;
   }
   .progress-line-mobile {
     display: none;

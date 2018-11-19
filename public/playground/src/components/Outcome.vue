@@ -27,14 +27,14 @@
               <div class="card card-front col-12">
                 <div class="row justify-content-center align-items-center">
                   <div class="photo-wrapper col-12 text-center">
-                    <div class="photo" :style="{backgroundImage: `url(${fake_result[0].image_url})`}"></div>
+                    <div class="photo" :style="{backgroundImage: `url(${result[0].image_url})`}"></div>
                   </div>
-                  <div class="name col-12 text-center">{{fake_result[0].name}}</div>
+                  <div class="name col-12 text-center">{{result[0].name}}</div>
                   <div class="radar col-6">
                     <canvas id="radar" width="100" height="100"></canvas>
                   </div>
                   <div class="policies col-6">
-                    <p class="policy" :key="index" v-for="(policy, index) in fake_result[1].slice(0, 3)">{{policy.description}}</p>
+                    <p class="policy" :key="index" v-for="(policy, index) in result[1].slice(0, 3)">{{policy.description}}</p>
                     <p class="more-policy text-right">更多政見</p>
                   </div>
                 </div>
@@ -64,16 +64,18 @@
               <div class="col-10 col-sm-8 col-md-5 col-lg-4">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-6 text-center">
-                    <label class="button" for="flip-card">
+                    <label class="button" for="flip-card" @click="showCardFront = !showCardFront">
                       翻面
                       <span class="dot"></span>
                     </label>
                   </div>
-                  <div class="col-6 text-center">
-                    <div class="button">
-                      分享
-                      <span class="dot"></span>                
-                    </div>
+                  <div class="col-6 text-center" data-title="分享出去" data-img="" :data-url="shareUrl" data-desc="邁向成為議員之路" data-via="">
+                    <a rel="nofollow " data-site="facebook" class="ssb-icon ssb-facebook" onclick="return SocialShareButton.share(this);" title="Share to Facebook" href="#">
+                      <div class="button">
+                        分享
+                        <span class="dot"></span>                
+                      </div>
+                    </a>
                   </div>
                   <div class="col-12 text-center">
                     <div class="button" @click="playAgain">
@@ -93,7 +95,7 @@
 
 <script>
 import Chart from "chart.js";
-import 'bootstrap';
+import "bootstrap";
 
 export default {
   name: "Outcome",
@@ -101,6 +103,8 @@ export default {
     return {
       showIntro: true,
       showOutcome: false,
+      showCardFront: null,
+      shareUrl: "http://www.taiwanbunbun.com/result/1901888149900371",
       fake_result: [
         {
           id: 25,
@@ -256,22 +260,24 @@ export default {
   },
   props: ["result"],
   mounted() {
-    // this.user_name = document.querySelector('#name').value;
-    this.user_name = '劉義維';
-    // this.user_avatar_url = document.querySelector('#avatar').value;
-    this.user_avatar_url = 'https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34';
+    this.user_name = document.querySelector('#name').value;
+    // this.user_name = "劉義維";
+    this.user_avatar_url = document.querySelector('#avatar').value;
+    // this.user_avatar_url =
+    //   "https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34";
 
     setTimeout(() => {
       this.showIntro = false;
       this.showOutcome = true;
-    }, 1000);
+      this.showCardFront = true;
+    }, 10000);
     setTimeout(() => {
-      const affairs = this.fake_result[2].affairs;
-      const transportation = this.fake_result[2].transportation;
-      const education = this.fake_result[2].education;
-      const teen = this.fake_result[2].teen;
-      const citizen = this.fake_result[2].citizen;
-      const economic = this.fake_result[2].economic;
+      const affairs = this.result[2].affairs;
+      const transportation = this.result[2].transportation;
+      const education = this.result[2].education;
+      const teen = this.result[2].teen;
+      const citizen = this.result[2].citizen;
+      const economic = this.result[2].economic;
       const ctx = document.getElementById("radar");
       new Chart(ctx, {
         type: "radar",
@@ -319,17 +325,32 @@ export default {
           }
         }
       });
-    }, 1000);
+    }, 10000);
   },
   methods: {
     playAgain() {
       this.$emit("play-again");
+    }
+  },
+  watch: {
+    showCardFront() {
+      if (this.showCardFront) {
+        this.shareUrl =
+          "http://www.taiwanbunbun.com/result/1901888149900371?front";
+      } else {
+        this.shareUrl =
+          "http://www.taiwanbunbun.com/result/1901888149900371?back";
+      }
     }
   }
 };
 </script>
 
 <style lang='scss' scoped>
+a {
+  color: inherit;
+  text-decoration: none;
+}
 #outcome {
   min-height: 100vh;
   padding: 10px 0;
