@@ -338,7 +338,7 @@ export default {
       number: 0
     };
   },
-  props: ["result"],
+  props: ["result", "radar"],
   mounted() {
     this.user_name = document.querySelector('#name').value;
     // this.user_name = "劉義維";
@@ -354,12 +354,12 @@ export default {
       this.showCardFront = true;
     }, 12000);
     setTimeout(() => {
-      const affairs = this.result[2].affairs;
-      const transportation = this.result[2].transportation;
-      const education = this.result[2].education;
-      const teen = this.result[2].teen;
-      const citizen = this.result[2].citizen;
-      const economic = this.result[2].economic;
+      const affairs = this.radar[0];
+      const transportation = this.radar[1];
+      const education = this.radar[3];
+      const teen = this.radar[4];
+      const citizen = this.radar[5];
+      const economic = this.radar[2];
       const ctx = document.getElementById("radar");
       new Chart(ctx, {
         type: "radar",
