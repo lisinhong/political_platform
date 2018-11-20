@@ -56,18 +56,23 @@ class PlaygroundsController < ApplicationController
         end
 
         uniq_ids = candidate_ids.uniq
-        result_id = 0
-        result_count = 0
+        result_id = []
+        candidate_counts = []
         uniq_ids.each do |u|
             candidate_count = candidate_ids.count(u)
-            if candidate_count > result_count
-                result_count = candidate_count
-                result_id = u
+            candidate_counts.push(candidate_count)
+        end
+
+        result_count = candidate_counts.sort.last
+        uniq_ids.each do |u|
+            candidate_count = candidate_ids.count(u)
+            if result_count == candidate_count
+                result_id.push(u)
             end
         end
 
 
-        politician = Politician.find(result_id)
+        politician = Politician.where(id: result_id).order("RANDOM()").first
         politics = politician.politics
      
 
