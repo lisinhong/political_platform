@@ -16,6 +16,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -24,47 +25,47 @@ body {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, Geneva, "Heiti TC",
     "Microsoft JhengHei", sans-serif;
 }
-#outcome {
+#result-page #outcome {
   min-height: 100vh;
   padding: 10px 0;
 }
 
-.btn-check {
+#result-page .btn-check {
   border: none;
   background: none;
   cursor: pointer;
 }
 
-.outcome-wrapper {
+#result-page .outcome-wrapper {
   min-height: 100vh;
 }
-.outcome-wrapper .title {
+#result-page .outcome-wrapper .title {
   font-family: "Zpix";
   font-size: 2.5em;
 }
 
-.outcome {
+#result-page .outcome {
   height: 100%;
 }
 
-.card-wrapper {
+#result-page .card-wrapper {
   height: 450px;
 }
-.card-wrapper .card-inner {
+#result-page .card-wrapper .card-inner {
   position: relative;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   height: 100%;
 }
-.card-wrapper .card {
+#result-page .card-wrapper .card {
   border: 2px solid;
   font-family: "Zpix";
   padding: 16px;
   height: 100%;
 }
-.card-wrapper .card .photo-wrapper {
+#result-page .card-wrapper .card .photo-wrapper {
   margin-top: 10px;
 }
-.card-wrapper .card .photo {
+#result-page .card-wrapper .card .photo {
   display: inline-block;
   width: 200px;
   height: 200px;
@@ -76,35 +77,35 @@ body {
   border: 2px solid #7c7b79;
   margin-bottom: 10px;
 }
-.card-wrapper .card .name {
+#result-page .card-wrapper .card .name {
   margin-bottom: 10px;
   font-size: 1.2em;
 }
-.card-wrapper .card .policy {
+#result-page .card-wrapper .card .policy {
   font-size: 0.6em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.card-wrapper .card .slogan {
+#result-page .card-wrapper .card .slogan {
   color: red;
   font-size: 1.6em;
   text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
   font-weight: 800;
   font-family: "JF-Dot-jiskan24h-2000";
 }
-.card-wrapper .card .more-policy {
+#result-page .card-wrapper .card .more-policy {
   color: #e7c34e;
   font-size: 0.6em;
   margin-right: 10px;
   cursor: pointer;
 }
-.card-wrapper .card .number-wrapper {
+#result-page .card-wrapper .card .number-wrapper {
   position: absolute;
   left: 15px;
   top: 0;
 }
-.card-wrapper .card .number {
+#result-page .card-wrapper .card .number {
   border: 2px solid #ff0000;
   color: #ff0000;
   font-size: 1.4em;
@@ -116,15 +117,15 @@ body {
   align-items: center;
   background-color: #fff;
 }
-.card-wrapper #radar {
+#result-page .card-wrapper #radar {
   width: 100%;
   height: auto;
 }
-.card-wrapper .card-back {
+#result-page .card-wrapper .card-back {
   background: url(../../assets/card.png) no-repeat center center;
   background-size: 110%;
 }
-.card-wrapper .card-back .name {
+#result-page .card-wrapper .card-back .name {
   margin: 0;
   color: #ff0000;
   font-size: 2em;
@@ -132,23 +133,23 @@ body {
   font-weight: 500;
   font-family: "JF-Dot-jiskan24h-2000";
 }
-.card-wrapper .card-back-header {
+#result-page .card-wrapper .card-back-header {
   position: relative;
 }
-#flip-card:checked + .card-inner {
+#result-page #flip-card:checked + .card-inner {
   transform: rotateY(180deg);
 }
 
 @media screen and (max-width: 767px) {
-  .outcome-wrapper .title {
+  #result-page .outcome-wrapper .title {
     font-size: 8vw;
   }
 
-  .intro-text {
+  #result-page .intro-text {
     font-size: 8vw;
   }
 
-  .button {
+  #result-page .button {
     font-size: 1em;
     width: 100px;
   }
