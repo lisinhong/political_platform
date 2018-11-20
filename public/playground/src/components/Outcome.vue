@@ -69,7 +69,7 @@
                       <span class="dot"></span>
                     </label>
                   </div>
-                  <div class="col-6 text-center" data-title="分享出去" data-img="" :data-url="shareUrl" data-desc="邁向成為議員之路" data-via="">
+                  <div class="col-6 text-center" data-title="分享出去" data-img="" :data-url="shareUrl" :data-desc="shareDesc" data-via="">
                     <a rel="nofollow " data-site="facebook" class="ssb-icon ssb-facebook" onclick="return SocialShareButton.share(this);" title="Share to Facebook" href="#">
                       <div class="button">
                         分享
@@ -150,6 +150,7 @@ export default {
       showOutcome: false,
       showCardFront: null,
       shareUrl: "http://www.taiwanbunbun.com/result/1901888149900371",
+      shareDesc: "",
       fake_result: [
         {
           id: 675,
@@ -424,6 +425,7 @@ export default {
       } else {
         this.shareUrl =`http://www.taiwanbunbun.com/result/${this.user_id}?back`;
       }
+      this.shareDesc = `${this.user_name} 從政後會和 ${result[0].name} 議員 87% 像！！`;
     }
   }
 };
