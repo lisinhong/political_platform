@@ -195,7 +195,7 @@ export default {
   }
   .options {
     height: min-content;
-    animation: fadeInOption 3s linear;
+    animation: fadeInOption 2.5s linear;
     input[type="radio"] {
       display: none;
       &:checked + .option {

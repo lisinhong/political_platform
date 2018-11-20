@@ -1,10 +1,10 @@
 <input id="name" type="hidden" value="<%= current_user.try(:name) %>">
 <input id="avatar" type="hidden" value="<%= current_user.try(:remote_avatar_url) %>">
+<input id="user-id" type="hidden" value="<%= current_user.try(:uid) %>">
 
 <div id='app'></div>
 <%= stylesheet_link_tag '/playground/dist/css/playground.css' %>
 <%= javascript_include_tag '/playground/dist/js/playground.js' %>
-<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.27.0/js/vendor/jquery.ui.widget.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.27.0/js/jquery.fileupload.js" crossorigin="anonymous"></script>
