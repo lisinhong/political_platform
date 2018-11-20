@@ -352,7 +352,7 @@ export default {
       this.showIntro = false;
       this.showOutcome = true;
       this.showCardFront = true;
-    }, 1000);
+    }, 12000);
     setTimeout(() => {
       const affairs = this.result[2].affairs;
       const transportation = this.result[2].transportation;
@@ -407,7 +407,7 @@ export default {
           }
         }
       });
-    }, 1000);
+    }, 12000);
   },
   methods: {
     playAgain() {
