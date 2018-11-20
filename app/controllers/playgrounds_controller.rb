@@ -27,7 +27,7 @@ class PlaygroundsController < ApplicationController
 
     def result
         @user = User.find_by(uid: params[:uid])   
-        @result = Result.find_by(u_id: params[:uid])
+        @result = Result.all.where(u_id: params[:uid]).last
         @politician = Politician.find(@result.politician_id)
         render :template => "politicians/result"
     end
