@@ -2,13 +2,15 @@ class PlaygroundsController < ApplicationController
 
 
     def index
-        #if current_user == nil 
-        #    redirect_to "/users/auth/facebook"
-        #    return
-        #end
-        @user = User.new()
-        #@share_url = 'http://www.taiwanbunbun.com/result/' + current_user.try(:uid)
+        if !params[:admin].present?
+            if current_user == nil 
+                redirect_to "/users/auth/facebook"
+                return
+            end
+            @share_url = 'https://www.taiwanbunbun.com/result/' + current_user.try(:uid)
+        end
 
+        @user = User.new()
         render :template => "politicians/playground"
     end
 
