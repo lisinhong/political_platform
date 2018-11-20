@@ -47,6 +47,9 @@ class PlaygroundsController < ApplicationController
 
     def get_result
         hashtags = params[:data]
+        type_datas = params[:type_data]
+
+
         candidate_ids = []
         type_ids = []
         hashtags.each do |h|
@@ -63,10 +66,10 @@ class PlaygroundsController < ApplicationController
             candidate_counts.push(candidate_count)
         end
 
-        result_count = candidate_counts.sort.last
+        result_count = candidate_counts.sort.last(10).min
         uniq_ids.each do |u|
             candidate_count = candidate_ids.count(u)
-            if result_count == candidate_count
+            if candidate_count >= result_count
                 result_id.push(u)
             end
         end
@@ -80,12 +83,12 @@ class PlaygroundsController < ApplicationController
         result = Result.new(name: current_user.try(:name), 
                     email: current_user.try(:email),   
                     u_id: current_user.try(:uid),
-                    affairs: type_ids.count(0),
-                    transportation: type_ids.count(1),
-                    economic: type_ids.count(2),
-                    education: type_ids.count(3),
-                    teen: type_ids.count(4),
-                    citizen: type_ids.count(5),
+                    affairs: type_datas[:'0'],
+                    transportation: type_datas[:'1'],
+                    economic: type_datas[:'2'],
+                    education: type_datas[:'3'],
+                    teen: type_datas[:'4'],
+                    citizen: type_datas[:'5'],
                     politician_id: politician.id)
         result.save
 
