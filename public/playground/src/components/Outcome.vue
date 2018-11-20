@@ -399,7 +399,7 @@ export default {
             ticks: {
               beginAtZero: true,
               maxTicksLimit: 4,
-              min: 0,
+              min: -1,
               max: 4,
               stepSize: 2,
               display: false
