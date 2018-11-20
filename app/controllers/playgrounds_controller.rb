@@ -2,12 +2,12 @@ class PlaygroundsController < ApplicationController
 
 
     def index
-        if current_user == nil 
-            redirect_to "/users/auth/facebook"
-            return
-        end
+        #if current_user == nil 
+        #    redirect_to "/users/auth/facebook"
+        #    return
+        #end
         @user = User.new()
-        @share_url = 'http://www.taiwanbunbun.com/result/' + current_user.try(:uid)
+        #@share_url = 'http://www.taiwanbunbun.com/result/' + current_user.try(:uid)
 
         render :template => "politicians/playground"
     end
@@ -24,7 +24,9 @@ class PlaygroundsController < ApplicationController
     end
 
     def result
-        @user_image_url = User.find_by(uid: params[:uid]).image.url       
+        @user = User.find_by(uid: params[:uid])   
+        @result = Result.find_by(u_id: params[:uid])
+        @politician = Politician.find(@result.politician_id)
         render :template => "politicians/result"
     end
 
@@ -33,7 +35,7 @@ class PlaygroundsController < ApplicationController
         query = Hash[params.permit([:'0',:'1',:'2',:'3',:'4',:'5']).to_h.sort_by{|k, v| v}.reverse]
         select_type = query.keys[0..2]
 
-        @questions = Question.where(p_type: select_type).order(:p_type)
+        @questions = Question.where(p_type: select_type).order("p_type, id")
 
 
         render json: @questions
@@ -51,7 +53,6 @@ class PlaygroundsController < ApplicationController
             type_ids.push(Hashtag.find(h).politic_type_id)
         end
 
-        puts type_ids
         uniq_ids = candidate_ids.uniq
         result_id = 0
         result_count = 0
@@ -77,7 +78,8 @@ class PlaygroundsController < ApplicationController
                     economic: type_ids.count(2),
                     education: type_ids.count(3),
                     teen: type_ids.count(4),
-                    citizen: type_ids.count(5))
+                    citizen: type_ids.count(5),
+                    politician_id: result_id)
         result.save
 
         

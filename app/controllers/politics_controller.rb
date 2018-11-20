@@ -72,6 +72,12 @@ class PoliticsController < ApplicationController
     end
   end
 
+  def get_politics
+    politics = Politic.where(politician_id: params[:data])
+
+    render json: politics
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_politic

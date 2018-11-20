@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   # API 
   post 'api/get_second_step_questions' => "playgrounds#get_second_step_questions"
   post 'api/get_result' => "playgrounds#get_result"
+  post 'api/get_politics' => "politics#get_politics"
 end

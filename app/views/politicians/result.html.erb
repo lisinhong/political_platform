@@ -1,3 +1,70 @@
+<style>
+
+a{
+  color: white;
+}
+
+.outcome-wrapper{
+  min-height: 80vh;
+}
+
+.pixel {
+	display: block;
+	position: relative;
+	width: 300px;
+	height: 80px;
+	color: white;
+	font-size: 30px;
+	text-transform: uppercase;
+	background-color: #06C1DE;
+	border: none;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 24px;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-family: 'Press Start 2P', cursive;
+	outline: none;
+}
+.pixel::after {
+	content: "";
+	position: absolute;
+	width: 300px;
+	height: 80px;
+	top: 12px;
+	left: 0;
+	background-color: #047E91;
+	border-radius: 24px;
+	z-index: -1;
+}
+.pixel:hover {
+	background-color: #06B6D1;
+}
+.pixel:active {
+	top: 10px;
+}
+.pixel:active::after {
+	top: 2px;
+}
+</style>
+
+<input type="hidden" id="user-name" value="<%= @user.name %>">
+<input type="hidden" id="user-url" value="<%= @user.remote_avatar_url %>">
+
+<input type="hidden" id="affairs-value" value="<%= @result.affairs %>">
+<input type="hidden" id="transportation-value" value="<%= @result.transportation %>">
+<input type="hidden" id="economic-value" value="<%= @result.economic %>">
+<input type="hidden" id="education-value" value="<%= @result.education %>">
+<input type="hidden" id="teen-value" value="<%= @result.teen %>">
+<input type="hidden" id="citizen-value" value="<%= @result.citizen %>">
+
+<input type="hidden" id="politician-id" value="<%= @politician.id %>">
+<input type="hidden" id="politician-name" value="<%= @politician.name %>">
+<input type="hidden" id="politician-url" value="<%= @politician.image_url %>">
+
+
+
 <div class="container">
   <div class="row">
     <div class="outcome-wrapper col-12">
@@ -43,173 +110,20 @@
   </div>
 </div>
 
+<div class="container">
+    <button class="pixel"><a href="/">開始你的議員之路！</a></button>
+</div>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'></script>
 <script>
 (function() {
-  var fake_result = [
-    {
-      id: 25,
-      name: "蘇世岳",
-      region: "03 八德區",
-      party: "無黨籍",
-      age: 0,
-      gender: 0,
-      city: "桃園市",
-      birth: null,
-      school: null,
-      experience: null,
-      created_at: "2018-10-28T10:19:46.518Z",
-      updated_at: "2018-11-04T13:17:45.232Z",
-      image_url:
-        "https://election.storm.mg/uploads/images/4ad40fb935db3a3e3664b142fda03fb6.jpg"
-    },
-    [
-      {
-        id: 17,
-        description:
-          "督促大湳滯洪池、興豐路排水改善工程儘速完成，完善雨水下水道，解決長年積水問題。\n",
-        politician_id: 25,
-        created_at: "2018-10-28T10:19:46.686Z",
-        updated_at: "2018-11-06T10:07:28.789Z",
-        first_type: "0"
-      },
-      {
-        id: 1031,
-        description:
-          "增加幼兒園招生名額；爭取補助幼兒園安裝CO2及PM2.5室內空氣監測設備。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:02:14.882Z",
-        updated_at: "2018-11-11T13:15:19.599Z",
-        first_type: "3"
-      },
-      {
-        id: 15,
-        description:
-          "督促八德公托中心、瑞泰公托中心、廣興公托中心，如實如期完工，落實在地公托。\n",
-        politician_id: 25,
-        created_at: "2018-10-28T10:19:46.643Z",
-        updated_at: "2018-11-11T13:15:19.631Z",
-        first_type: "3"
-      },
-      {
-        id: 16,
-        description: "監督鐵路地下化儘速動工，打開八德對外交通瓶頸。\n",
-        politician_id: 25,
-        created_at: "2018-10-28T10:19:46.664Z",
-        updated_at: "2018-11-11T13:15:19.682Z",
-        first_type: "1"
-      },
-      {
-        id: 1032,
-        description:
-          "爭取各國中、國小教室儘速裝設冷氣；建置智慧校園數位學堂；監督八德國小校舍整建及八德國中活動中心改善。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:02:32.240Z",
-        updated_at: "2018-11-11T13:15:19.780Z",
-        first_type: "3"
-      },
-      {
-        id: 1033,
-        description:
-          "爭取在八德擴大計畫區設置八德綜合中學，包括高中部及高職部，便利在地升學。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:02:50.986Z",
-        updated_at: "2018-11-11T13:15:19.810Z",
-        first_type: "3"
-      },
-      {
-        id: 1034,
-        description:
-          "爭取在八德擴大計畫區設置八德綜合中學，包括高中部及高職部，便利在地升學。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:03:11.179Z",
-        updated_at: "2018-11-11T13:15:19.854Z",
-        first_type: "3"
-      },
-      {
-        id: 1035,
-        description:
-          "督促捷運綠線如期動工，妥善規劃替代疏運路線，避免交通黑暗期。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:04:31.560Z",
-        updated_at: "2018-11-11T13:15:19.889Z",
-        first_type: "1"
-      },
-      {
-        id: 1036,
-        description:
-          "爭取以豐德路延伸增設國道三號八德第二交流道，帶動八德擴大計畫區發展。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:04:50.630Z",
-        updated_at: "2018-11-11T13:15:19.921Z",
-        first_type: "1"
-      },
-      {
-        id: 1037,
-        description:
-          "增設YouBike租賃站；建置智慧型公車系統，提升公車到站準點率。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:05:13.717Z",
-        updated_at: "2018-11-11T13:15:19.954Z",
-        first_type: "1"
-      },
-      {
-        id: 1038,
-        description: "爭取再增設一所日間照顧中心，減輕家庭照護壓力。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:05:35.474Z",
-        updated_at: "2018-11-11T13:15:19.986Z",
-        first_type: "3"
-      },
-      {
-        id: 1039,
-        description:
-          "督促八德國民運動中心、大湳森林公園、八塊厝故事館、北區青少年活動中心、興豐親子館、兒童玩具圖書館儘速完工；增加天幕籃球場、寵物公園、親子共樂遊憩設施。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:05:50.514Z",
-        updated_at: "2018-11-11T13:15:20.010Z",
-        first_type: "3"
-      },
-      {
-        id: 1040,
-        description:
-          "督促儘速規劃完成公共汙水下水道，提升用戶普及率，同時完成電纜地下化。",
-        politician_id: 25,
-        created_at: "2018-11-06T10:06:14.765Z",
-        updated_at: "2018-11-06T10:06:14.765Z",
-        first_type: "0"
-      }
-    ],
-    {
-      id: 7,
-      name: "李信宏",
-      email: "alan12141020@gmail.com",
-      affairs: 2,
-      transportation: 1,
-      economic: 1,
-      education: 2,
-      teen: 0,
-      citizen: 0,
-      created_at: "2018-11-18T09:52:49.054Z",
-      updated_at: "2018-11-18T09:52:49.054Z",
-      u_id: "1901888149900371"
-    }
-  ];
-  
-  function renderPolicy() {
-    var content = '';
-    for(var i=0; i<3; i++) {
-      content += '<p class="policy">' + fake_result[1][i].description + '</p>';
-    }
-    $('.policies').prepend(content);
-  }
   function renderRadar() {
-    const affairs = fake_result[2].affairs;
-    const transportation = fake_result[2].transportation;
-    const education = fake_result[2].education;
-    const teen = fake_result[2].teen;
-    const citizen = fake_result[2].citizen;
-    const economic = fake_result[2].economic;
+    const affairs = $("#affairs-value").val();
+    const transportation = $("#transportation-value").val();
+    const education = $("#education-value").val();
+    const teen = $("#teen-value").val();
+    const citizen = $("#citizen-value").val();
+    const economic = $("#economic-value").val();
     const ctx = document.getElementById("radar");
     new Chart(ctx, {
       type: "radar",
@@ -258,20 +172,42 @@
       }
     });
   }
+  function renderPolicy(data) {
+      var content = '';
+      console.log(data)
+      for(var i=0; i<data.length&&i<3; i++) {
+        content += '<p class="policy">' + data[i].description + '</p>';
+      }
+      $('.policies').prepend(content);
+  }
 
   $('.card-front').hide();
   $('.card-back').hide();
   if(window.location.search === '?front') $('.card-front').show();
   else $('.card-back').show();
 
-  $('.photo-politician').css('background-image', 'url('+fake_result[0].image_url+')');
-  $('.name-politician').text(fake_result[0].name);
-  renderPolicy();
+  $('.photo-politician').css('background-image', `url(${$("#politician-url").val()})`);
+  $('.name-politician').text($("#politician-name").val());
   $('.number').text(Math.floor((Math.random() * 10) + 1));
-  // $('.photo-politician').css('background-image', 'url('+fake_result[2].image_url+')');
-  // $('.name-politician').text(fake_result[2].name);
-  $('.photo-user').css('background-image', 'url(https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34)');
-  $('.name-user').text('劉義維');
-  renderRadar();
+  $('.photo-user').css('background-image', `url(${$("#user-url").val()})`);
+  $('.name-user').text($("#user-name").val());
+
+  setTimeout(function(){
+    renderRadar();
+  }, 500)
+
+$.ajax({
+      type: "POST",
+      url: "/api/get_politics",
+      // data: { data: this.choosed },
+      data: { data: $("#politician-id").val() },
+      success: (result) => {
+        renderPolicy(result)
+      },
+      error: (error) => {
+        console.log(error);
+      }
+});
+
 })();
 </script>
