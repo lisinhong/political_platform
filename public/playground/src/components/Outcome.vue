@@ -90,41 +90,50 @@
           </div>
       </div>
     </transition>
-<div class="modal fade policy-info col-12" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered row justify-content-center align-items-center" role="document">
-    <table class="col-12 col-md-8">
-      <tr>
-        <td class="text-center" rowspan="3">
-          <img src="../../public/stamp.png" alt="stamp">
-        </td>
-        <td class="text-center table-title table-head">姓名</td>
-        <td>{{result[0].name}}</td>
-      </tr>
-      <tr>
-        <td class="text-center table-title table-head">選區</td>
-        <td>{{result[0].region}}</td>
-      </tr>
-      <tr>
-        <td class="text-center table-title table-head">政黨</td>
-        <td>{{result[0].party}}</td>
-      </tr>
-      <tr>
-        <td class="text-center table-title">學歷</td>
-        <td colspan="2">{{result[0].school}}</td>
-      </tr>
-      <tr>
-        <td class="text-center table-title">經歷</td>
-        <td colspan="2">{{result[0].experience}}</td>
-      </tr>
-      <tr>
-        <td class="text-center table-title">政見</td>
-        <td colspan="2">
-          <span :key="index" v-for="(policy, index) in result[1]">{{policy.description.trim()}}</span>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+    <div class="modal fade policy-info" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table>
+              <tr>
+                <td class="text-center" rowspan="3">
+                  <img src="../../public/stamp.png" alt="stamp">
+                </td>
+                <td class="text-center table-title table-head">姓名</td>
+                <td>{{result[0].name}}</td>
+              </tr>
+              <tr>
+                <td class="text-center table-title table-head">選區</td>
+                <td>{{result[0].region}}</td>
+              </tr>
+              <tr>
+                <td class="text-center table-title table-head">政黨</td>
+                <td>{{result[0].party}}</td>
+              </tr>
+              <tr>
+                <td class="text-center table-title">學歷</td>
+                <td colspan="2">{{result[0].school}}</td>
+              </tr>
+              <tr>
+                <td class="text-center table-title">經歷</td>
+                <td colspan="2">{{result[0].experience}}</td>
+              </tr>
+              <tr>
+                <td class="text-center table-title">政見</td>
+                <td colspan="2">
+                  <span :key="index" v-for="(policy, index) in result[1]">{{policy.description.trim()}}</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -325,6 +334,7 @@ export default {
       ],
       user_name: "",
       user_avatar_url: "",
+      user_id: "",
       number: 0
     };
   },
@@ -335,13 +345,14 @@ export default {
     this.user_avatar_url = document.querySelector('#avatar').value;
     // this.user_avatar_url =
     //   "https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34";
-    this.number = Math.floor((Math.random() * 10) + 1);
-    
+    this.user_id = document.querySelector('#user-id').value;
+    this.number = Math.floor(Math.random() * 10 + 1);
+
     setTimeout(() => {
       this.showIntro = false;
       this.showOutcome = true;
       this.showCardFront = true;
-    }, 12000);
+    }, 1000);
     setTimeout(() => {
       const affairs = this.result[2].affairs;
       const transportation = this.result[2].transportation;
@@ -363,7 +374,7 @@ export default {
           ],
           datasets: [
             {
-              backgroundColor: "rgba(231,195,78,0.4)",
+              backgroundColor: "rgba(231,195,78,0.6)",
               data: [
                 affairs,
                 transportation,
@@ -396,7 +407,7 @@ export default {
           }
         }
       });
-    }, 12000);
+    }, 1000);
   },
   methods: {
     playAgain() {
@@ -409,11 +420,9 @@ export default {
   watch: {
     showCardFront() {
       if (this.showCardFront) {
-        this.shareUrl =
-          "http://www.taiwanbunbun.com/result/1901888149900371?front";
+        this.shareUrl = `http://www.taiwanbunbun.com/result/${this.user_id}?front`;
       } else {
-        this.shareUrl =
-          "http://www.taiwanbunbun.com/result/1901888149900371?back";
+        this.shareUrl =`http://www.taiwanbunbun.com/result/${this.user_id}?back`;
       }
     }
   }
@@ -577,10 +586,14 @@ a {
   }
 }
 .policy-info {
+  .modal-open .modal {
+    padding-right: 0 !important;
+  }
   .modal-dialog {
-    max-width: none;
+    max-width: 80%;
   }
   table {
+    width: 100%;
     font-family: "Zpix";
     border: 2px solid;
     border-collapse: collapse;
@@ -625,6 +638,11 @@ a {
   .button {
     font-size: 1em;
     width: 100px;
+  }
+  .policy-info {
+    .modal-dialog {
+      max-width: 100%;
+    }
   }
 }
 
