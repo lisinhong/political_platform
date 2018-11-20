@@ -49,9 +49,9 @@ export default {
         data: staticQuestions,
         success: (result) => {
           // console.log(result);
-          this.dynamicQuestions.push(result[1]); // 申論
+          this.dynamicQuestions.push(result[0]); // 申論
           this.dynamicQuestions.push(result[4]); // 交叉詰問
-          this.dynamicQuestions.push(result[6]); // 結論
+          this.dynamicQuestions.push(result[7]); // 結論
         },
         error: (error) => {
           console.log(error);
