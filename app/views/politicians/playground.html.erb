@@ -3,8 +3,8 @@
 <input id="user-id" type="hidden" value="<%= current_user.try(:uid) %>">
 
 <div id='app'></div>
-<%= stylesheet_link_tag '/playground/dist/css/playground.css' %>
-<%= javascript_include_tag '/playground/dist/js/playground.js' %>
+<%= stylesheet_link_tag '/playground/dist/css/playground.css?v=1' %>
+<%= javascript_include_tag '/playground/dist/js/playground.js?v=1' %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.27.0/js/vendor/jquery.ui.widget.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.27.0/js/jquery.fileupload.js" crossorigin="anonymous"></script>

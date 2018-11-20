@@ -109,14 +109,15 @@ body {
   background-color: #f1f1f1;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, Geneva, "Heiti TC",
     "Microsoft JhengHei", sans-serif;
+  font-size: 16px;
 }
 .button {
-  width: 120px;
+  width: 130px;
   margin: 20px auto;
   position: relative;
   background-color: #fff;
   padding: 6px;
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-family: "Zpix";
   display: block;
   border-radius: 4px;
