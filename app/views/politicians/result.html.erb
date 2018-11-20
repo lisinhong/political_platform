@@ -183,7 +183,7 @@ a{
 
   $('.card-front').hide();
   $('.card-back').hide();
-  if(window.location.search === '?front') $('.card-front').show();
+  if(window.location.search.includes('?front')) $('.card-front').show();
   else $('.card-back').show();
 
   $('.photo-politician').css('background-image', `url(${$("#politician-url").val()})`);
