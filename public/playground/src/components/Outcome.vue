@@ -119,7 +119,7 @@
       <tr>
         <td class="text-center table-title">政見</td>
         <td colspan="2">
-          <span :key="index" v-for="(policy, index) in result[1]">{{policy.description}}</span>
+          <span :key="index" v-for="(policy, index) in result[1]">{{policy.description.trim()}}</span>
         </td>
       </tr>
     </table>
