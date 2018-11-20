@@ -1,7 +1,7 @@
 <template>
   <div id="outcome" class="row">
     <div class="intro-wrapper col-12" v-if="showIntro">
-      <div class="intro text-center justify-content-center align-items-center">
+      <div class="intro text-center">
         <div class="intro-text col-12">
           <p>2018年11月底</p>
           <p>某太平洋島國上</p>
@@ -35,7 +35,7 @@
                   </div>
                   <div class="policies col-6">
                     <p class="policy" :key="index" v-for="(policy, index) in result[1].slice(0, 3)">{{policy.description}}</p>
-                    <p class="more-policy text-right">更多政見</p>
+                    <p class="more-policy text-right" @click="morePolicyInfo">更多政見</p>
                   </div>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                   <div class="col-12">
                     <div class="card-back-header row align-items-center">
                       <div class="number-wrapper text-center">
-                        <div class="number">{{Math.floor((Math.random() * 10) + 1)}}</div>
+                        <div class="number">{{number}}</div>
                       </div>
                     <div class="name col-12 text-center">{{user_name}}</div>
                     </div>
@@ -90,12 +90,48 @@
           </div>
       </div>
     </transition>
+<div class="modal fade policy-info col-12" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered row justify-content-center align-items-center" role="document">
+    <table class="col-12 col-md-8">
+      <tr>
+        <td class="text-center" rowspan="3">
+          <img src="../../public/stamp.png" alt="stamp">
+        </td>
+        <td class="text-center table-title table-head">姓名</td>
+        <td>{{result[0].name}}</td>
+      </tr>
+      <tr>
+        <td class="text-center table-title table-head">選區</td>
+        <td>{{result[0].region}}</td>
+      </tr>
+      <tr>
+        <td class="text-center table-title table-head">政黨</td>
+        <td>{{result[0].party}}</td>
+      </tr>
+      <tr>
+        <td class="text-center table-title">學歷</td>
+        <td colspan="2">{{result[0].school}}</td>
+      </tr>
+      <tr>
+        <td class="text-center table-title">經歷</td>
+        <td colspan="2">{{result[0].experience}}</td>
+      </tr>
+      <tr>
+        <td class="text-center table-title">政見</td>
+        <td colspan="2">
+          <span :key="index" v-for="(policy, index) in result[1]">{{policy.description}}</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
   </div>
 </template>
 
 <script>
 import Chart from "chart.js";
 import "bootstrap";
+import $ from "jquery";
 
 export default {
   name: "Outcome",
@@ -107,155 +143,189 @@ export default {
       shareUrl: "http://www.taiwanbunbun.com/result/1901888149900371",
       fake_result: [
         {
-          id: 25,
-          name: "蘇世岳",
-          region: "03 八德區",
-          party: "無黨籍",
-          age: 0,
+          id: 675,
+          name: "陳義洲",
+          region: "02 內湖區、南港區",
+          party: "中國國民黨",
+          age: 65,
           gender: 0,
-          city: "桃園市",
-          birth: null,
-          school: null,
-          experience: null,
-          created_at: "2018-10-28T10:19:46.518Z",
-          updated_at: "2018-11-04T13:17:45.232Z",
-          image_url:
-            "https://election.storm.mg/uploads/images/4ad40fb935db3a3e3664b142fda03fb6.jpg"
+          city: "臺北市",
+          birth: "1952-09-01T00:00:00.000Z",
+          school:
+            "內湖國小  \n方濟中學 \n基隆高中\n淡江大學國貿系畢業  \n美國舊金山大學碩士",
+          experience:
+            "現任台北市議員  \n文湖、碧湖、麗山國小家長會顧問  \n麗山高中家長會副會長   \n內湖登山會會員\n救國團內湖區團委會諮詢委員  \n國民黨內湖區黨部委員  \n內湖區晨泳會副會長  \n內湖獅子會榮譽理事長",
+          created_at: "2018-10-28T10:21:15.746Z",
+          updated_at: "2018-11-04T06:31:42.784Z",
+          image_url: "https://election.storm.mg/uploads/images/1029.jpg"
         },
         [
           {
-            id: 17,
-            description:
-              "督促大湳滯洪池、興豐路排水改善工程儘速完成，完善雨水下水道，解決長年積水問題。\n",
-            politician_id: 25,
-            created_at: "2018-10-28T10:19:46.686Z",
-            updated_at: "2018-11-06T10:07:28.789Z",
+            id: 312,
+            description: "●幫助基河國宅每戶房價降價退費約150萬元 \n",
+            politician_id: 675,
+            created_at: "2018-10-28T10:21:15.882Z",
+            updated_at: "2018-11-18T15:34:44.516Z",
             first_type: "0"
           },
           {
-            id: 1031,
-            description:
-              "增加幼兒園招生名額；爭取補助幼兒園安裝CO2及PM2.5室內空氣監測設備。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:02:14.882Z",
-            updated_at: "2018-11-11T13:15:19.599Z",
-            first_type: "3"
-          },
-          {
-            id: 15,
-            description:
-              "督促八德公托中心、瑞泰公托中心、廣興公托中心，如實如期完工，落實在地公托。\n",
-            politician_id: 25,
-            created_at: "2018-10-28T10:19:46.643Z",
-            updated_at: "2018-11-11T13:15:19.631Z",
-            first_type: "3"
-          },
-          {
-            id: 16,
-            description: "監督鐵路地下化儘速動工，打開八德對外交通瓶頸。\n",
-            politician_id: 25,
-            created_at: "2018-10-28T10:19:46.664Z",
-            updated_at: "2018-11-11T13:15:19.682Z",
+            id: 2620,
+            description: "●爭取碧湖國小新建工程2億，興建東湖國小地下停車場 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:30:52.751Z",
+            updated_at: "2018-11-18T15:34:44.541Z",
             first_type: "1"
           },
           {
-            id: 1032,
+            id: 2621,
             description:
-              "爭取各國中、國小教室儘速裝設冷氣；建置智慧校園數位學堂；監督八德國小校舍整建及八德國中活動中心改善。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:02:32.240Z",
-            updated_at: "2018-11-11T13:15:19.780Z",
-            first_type: "3"
-          },
-          {
-            id: 1033,
-            description:
-              "爭取在八德擴大計畫區設置八德綜合中學，包括高中部及高職部，便利在地升學。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:02:50.986Z",
-            updated_at: "2018-11-11T13:15:19.810Z",
-            first_type: "3"
-          },
-          {
-            id: 1034,
-            description:
-              "爭取在八德擴大計畫區設置八德綜合中學，包括高中部及高職部，便利在地升學。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:03:11.179Z",
-            updated_at: "2018-11-11T13:15:19.854Z",
-            first_type: "3"
-          },
-          {
-            id: 1035,
-            description:
-              "督促捷運綠線如期動工，妥善規劃替代疏運路線，避免交通黑暗期。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:04:31.560Z",
-            updated_at: "2018-11-11T13:15:19.889Z",
-            first_type: "1"
-          },
-          {
-            id: 1036,
-            description:
-              "爭取以豐德路延伸增設國道三號八德第二交流道，帶動八德擴大計畫區發展。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:04:50.630Z",
-            updated_at: "2018-11-11T13:15:19.921Z",
-            first_type: "1"
-          },
-          {
-            id: 1037,
-            description:
-              "增設YouBike租賃站；建置智慧型公車系統，提升公車到站準點率。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:05:13.717Z",
-            updated_at: "2018-11-11T13:15:19.954Z",
-            first_type: "1"
-          },
-          {
-            id: 1038,
-            description: "爭取再增設一所日間照顧中心，減輕家庭照護壓力。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:05:35.474Z",
-            updated_at: "2018-11-11T13:15:19.986Z",
-            first_type: "3"
-          },
-          {
-            id: 1039,
-            description:
-              "督促八德國民運動中心、大湳森林公園、八塊厝故事館、北區青少年活動中心、興豐親子館、兒童玩具圖書館儘速完工；增加天幕籃球場、寵物公園、親子共樂遊憩設施。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:05:50.514Z",
-            updated_at: "2018-11-11T13:15:20.010Z",
-            first_type: "3"
-          },
-          {
-            id: 1040,
-            description:
-              "督促儘速規劃完成公共汙水下水道，提升用戶普及率，同時完成電纜地下化。",
-            politician_id: 25,
-            created_at: "2018-11-06T10:06:14.765Z",
-            updated_at: "2018-11-06T10:06:14.765Z",
+              "●爭取南港區舊莊、九如、中研里訂定新的垃圾掩埋場回饋辦法降低水費及電費……等等 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:00.883Z",
+            updated_at: "2018-11-18T15:34:44.563Z",
             first_type: "0"
+          },
+          {
+            id: 2622,
+            description: "●為解決東湖水患，爭取四億元興建康寧抽水站 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:08.596Z",
+            updated_at: "2018-11-18T15:34:44.585Z",
+            first_type: "0"
+          },
+          {
+            id: 2623,
+            description: "●將港墘路737市場旁平面停車場改為立體停車場 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:14.205Z",
+            updated_at: "2018-11-18T15:34:44.607Z",
+            first_type: "1"
+          },
+          {
+            id: 2625,
+            description: "●爭取13億元，清除內湖垃圾山，成為親水公園 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:31.097Z",
+            updated_at: "2018-11-18T15:34:44.652Z",
+            first_type: "0"
+          },
+          {
+            id: 2626,
+            description: "●積極爭取2.4億元改造並妝點美麗大湖與碧湖公園 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:37.220Z",
+            updated_at: "2018-11-18T15:34:44.673Z",
+            first_type: "0"
+          },
+          {
+            id: 2629,
+            description: "●加速推動捷運民生汐止線與內湖南北線之興建 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:32:03.540Z",
+            updated_at: "2018-11-18T15:34:44.699Z",
+            first_type: "1"
+          },
+          {
+            id: 2630,
+            description: "●結合區里資源建立老人陪醫制度，增設病床與安養中心 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:32:15.502Z",
+            updated_at: "2018-11-18T15:34:44.724Z",
+            first_type: "0"
+          },
+          {
+            id: 2627,
+            description: "●協助興建白石湖吊橋，拓展觀光休閒農業 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:47.143Z",
+            updated_at: "2018-11-18T15:34:44.746Z",
+            first_type: "2"
+          },
+          {
+            id: 2628,
+            description:
+              "●開闢康湖隧道，拓寬並降低康湖路與安泰街114巷口未來 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:58.391Z",
+            updated_at: "2018-11-18T15:34:44.768Z",
+            first_type: "1"
+          },
+          {
+            id: 2631,
+            description: "●完整規劃公車路線，推動小型公車網路 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:32:53.380Z",
+            updated_at: "2018-11-18T15:34:44.788Z",
+            first_type: "1"
+          },
+          {
+            id: 2632,
+            description: "●於學校、公園、市場設立地下停車場，以解決停車問題 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:32:58.914Z",
+            updated_at: "2018-11-18T15:34:44.806Z",
+            first_type: "1"
+          },
+          {
+            id: 2633,
+            description: "●加速推動衛生下水道全面接管工程，及美化後巷工程 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:33:05.329Z",
+            updated_at: "2018-11-18T15:34:44.832Z",
+            first_type: "0"
+          },
+          {
+            id: 2634,
+            description: "●全力支持警政消防及防災預算，打擊犯罪，強化防災 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:33:12.150Z",
+            updated_at: "2018-11-18T15:34:44.855Z",
+            first_type: "0"
+          },
+          {
+            id: 2635,
+            description: "●建立山坡地及易淹水地區監測預警系統 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:33:37.222Z",
+            updated_at: "2018-11-18T15:34:44.876Z",
+            first_type: "0"
+          },
+          {
+            id: 2636,
+            description: "●加速電線電纜全面地下化 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:33:42.073Z",
+            updated_at: "2018-11-18T15:34:44.898Z",
+            first_type: "0"
+          },
+          {
+            id: 2624,
+            description:
+              "●於內湖7號公園興建地下停車場，解決西湖、麗山兩里停車問題；並設自來水加壓站，解決世界新城缺水之苦近期 \n",
+            politician_id: 675,
+            created_at: "2018-11-18T15:31:22.934Z",
+            updated_at: "2018-11-18T15:34:44.630Z",
+            first_type: "1"
           }
         ],
         {
-          id: 7,
+          id: 47,
           name: "李信宏",
           email: "alan12141020@gmail.com",
-          affairs: 2,
+          affairs: 0,
           transportation: 1,
-          economic: 1,
-          education: 2,
-          teen: 0,
+          economic: 0,
+          education: 0,
+          teen: 1,
           citizen: 0,
-          created_at: "2018-11-18T09:52:49.054Z",
-          updated_at: "2018-11-18T09:52:49.054Z",
+          created_at: "2018-11-20T07:56:39.357Z",
+          updated_at: "2018-11-20T07:56:39.357Z",
           u_id: "1901888149900371"
         }
       ],
       user_name: "",
-      user_avatar_url: ""
+      user_avatar_url: "",
+      number: 0
     };
   },
   props: ["result"],
@@ -265,12 +335,13 @@ export default {
     this.user_avatar_url = document.querySelector('#avatar').value;
     // this.user_avatar_url =
     //   "https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34";
-
+    this.number = Math.floor((Math.random() * 10) + 1);
+    
     setTimeout(() => {
       this.showIntro = false;
       this.showOutcome = true;
       this.showCardFront = true;
-    }, 10000);
+    }, 12000);
     setTimeout(() => {
       const affairs = this.result[2].affairs;
       const transportation = this.result[2].transportation;
@@ -325,11 +396,14 @@ export default {
           }
         }
       });
-    }, 10000);
+    }, 12000);
   },
   methods: {
     playAgain() {
       this.$emit("play-again");
+    },
+    morePolicyInfo() {
+      $(".modal").modal();
     }
   },
   watch: {
@@ -361,13 +435,14 @@ a {
   cursor: pointer;
 }
 .intro-wrapper {
-  perspective: 150px;
+  perspective: 200px;
   height: 100vh;
 }
 .intro {
   overflow: hidden;
   transform-style: preserve-3d;
-  transform: rotateX(10deg);
+  transform-origin: 50% 100%;
+  transform: rotateX(12deg);
   width: 100%;
   height: 100%;
   position: relative;
@@ -375,7 +450,7 @@ a {
 .intro-text {
   font-family: "Zpix";
   color: #e7c34e;
-  font-size: 40px;
+  font-size: 2.8em;
   position: absolute;
   top: 100%;
   left: 50%;
@@ -423,7 +498,7 @@ a {
       background: #7c7b79;
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: contain;
+      background-size: cover;
       border: 2px solid #7c7b79;
       margin-bottom: 10px;
     }
@@ -498,6 +573,43 @@ a {
   &:checked {
     + .card-inner {
       transform: rotateY(180deg);
+    }
+  }
+}
+.policy-info {
+  .modal-dialog {
+    max-width: none;
+  }
+  table {
+    font-family: "Zpix";
+    border: 2px solid;
+    border-collapse: collapse;
+    background: #fff;
+  }
+  td {
+    border: 2px solid;
+    padding: 5px 10px;
+    white-space: pre-line;
+    line-height: 1.8em;
+    &:first-child {
+      width: 20%;
+    }
+    &:nth-child(2) {
+      width: 10%;
+    }
+    &:last-child {
+      width: 70%;
+    }
+  }
+  tr {
+    border: 2px solid;
+  }
+  .table-title {
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    line-height: 60px;
+    &.table-head {
+      line-height: 30px;
     }
   }
 }

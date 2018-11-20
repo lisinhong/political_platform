@@ -169,7 +169,7 @@ export default {
     &.dialog-user {
       bottom: 0;
       left: 100px;
-      animation: fadeIn 2.5s linear;
+      animation: fadeInUser 2.5s linear;
       .dialog-text {
         left: 30px;
         &:before {
@@ -195,7 +195,7 @@ export default {
   }
   .options {
     height: min-content;
-    animation: fadeIn 3.5s linear;
+    animation: fadeInOption 3s linear;
     input[type="radio"] {
       display: none;
       &:checked + .option {
@@ -254,7 +254,26 @@ export default {
   0% {
     opacity: 0;
   }
-  50% {
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInUser {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInOption {
+  0% {
+    opacity: 0;
+  }
+  80% {
     opacity: 0;
   }
   100% {
