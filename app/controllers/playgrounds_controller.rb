@@ -86,7 +86,7 @@ class PlaygroundsController < ApplicationController
                     education: type_ids.count(3),
                     teen: type_ids.count(4),
                     citizen: type_ids.count(5),
-                    politician_id: result_id)
+                    politician_id: politician.id)
         result.save
 
         
