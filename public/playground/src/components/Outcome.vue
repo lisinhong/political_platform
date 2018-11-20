@@ -44,7 +44,7 @@
                   <div class="col-12">
                     <div class="card-back-header row align-items-center">
                       <div class="number-wrapper text-center">
-                        <div class="number">{{Math.floor((Math.random() * 10) + 1)}}</div>
+                        <div class="number">{{number}}</div>
                       </div>
                     <div class="name col-12 text-center">{{user_name}}</div>
                     </div>
@@ -324,7 +324,8 @@ export default {
         }
       ],
       user_name: "",
-      user_avatar_url: ""
+      user_avatar_url: "",
+      number: 0
     };
   },
   props: ["result"],
@@ -334,7 +335,8 @@ export default {
     this.user_avatar_url = document.querySelector('#avatar').value;
     // this.user_avatar_url =
     //   "https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34";
-
+    this.number = Math.floor((Math.random() * 10) + 1);
+    
     setTimeout(() => {
       this.showIntro = false;
       this.showOutcome = true;
