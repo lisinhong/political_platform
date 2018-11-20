@@ -5,13 +5,14 @@
       <StaticQuestions 
       @next-step="nextStep"
       @get-dynamic-questions="getDynamicQuestions"
+      @get-radar-data="getRadarData"
       v-if="step===2" />
       <DynamicQuestions 
       @next-step="nextStep"
       @get-result="getResult"
       :questions="dynamicQuestions" 
       v-if="step===3" />
-      <Outcome :result="result" v-if="step===4" @play-again="playAgain" />
+      <Outcome :result="result" :radar="radar" v-if="step===4" @play-again="playAgain" />
     </transition>
   </div>
 </template>
@@ -34,6 +35,7 @@ export default {
   data() {
     return {
       step: 1,
+      radar: [],
       dynamicQuestions: [],
       result: []
     };
@@ -41,6 +43,9 @@ export default {
   methods: {
     nextStep() {
       this.step++;
+    },
+    getRadarData(staticQuestions) {
+      this.radar = staticQuestions;
     },
     getDynamicQuestions(staticQuestions) {
       $.ajax({
