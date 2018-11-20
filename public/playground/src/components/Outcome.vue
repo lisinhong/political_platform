@@ -425,7 +425,7 @@ export default {
       } else {
         this.shareUrl =`http://www.taiwanbunbun.com/result/${this.user_id}?back`;
       }
-      this.shareDesc = `${this.user_name} 從政後會和 ${result[0].name} 議員 87% 像！！`;
+      this.shareDesc = `${this.user_name} 從政後會和 ${this.result[0].name} 議員 87% 像！！`;
     }
   }
 };

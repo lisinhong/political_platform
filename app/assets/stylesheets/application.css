@@ -14,21 +14,3 @@
  *= require_tree .
  *= require_self
  */
- /* @font-face {
-  font-family: "Zpix";
-  src: url("Zpix.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "JF-Dot-Kappa-20-Bold";
-  src: url("JF-Dot-Kappa-20-Bold.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "JF-Dot-jiskan24h-2000";
-  src: url("JF-Dot-jiskan24h-2000.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-} */
