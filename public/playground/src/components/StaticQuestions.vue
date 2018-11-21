@@ -205,7 +205,7 @@ export default {
     setTimeout(() => {
       this.showIntro = false;
       this.showQuestion = 1;
-    }, 10000);
+    }, 18000);
   },
   beforeDestroy() {
     this.choosed.forEach(element => {
@@ -249,7 +249,7 @@ export default {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  animation: scroll 10s linear;
+  animation: scroll 18s linear;
 }
 .question-wrapper {
   .question {
