@@ -347,12 +347,12 @@ export default {
   },
   props: ["result", "radar"],
   mounted() {
-    this.user_name = document.querySelector('#name').value;
+    this.user_name = document.querySelector("#name").value;
     // this.user_name = "劉義維";
-    this.user_avatar_url = document.querySelector('#avatar').value;
+    this.user_avatar_url = document.querySelector("#avatar").value;
     // this.user_avatar_url =
     //   "https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34";
-    this.user_id = document.querySelector('#user-id').value;
+    this.user_id = document.querySelector("#user-id").value;
     this.number = Math.floor(Math.random() * 10 + 1);
     this.showCardFront = true;
 
@@ -361,6 +361,22 @@ export default {
       this.showOutcome = true;
     }, 20000);
     setTimeout(() => {
+      this.renderRadar();
+    }, 20000);
+  },
+  methods: {
+    skipIntro() {
+      this.showIntro = false;
+      this.showOutcome = true;
+      this.renderRadar();
+    },
+    playAgain() {
+      this.$emit("play-again");
+    },
+    morePolicyInfo() {
+      $(".modal").modal();
+    },
+    renderRadar() {
       const affairs = this.radar[0];
       const transportation = this.radar[1];
       const education = this.radar[3];
@@ -414,28 +430,22 @@ export default {
           }
         }
       });
-    }, 20000);
-  },
-  methods: {
-    skipIntro() {
-      this.showIntro = false;
-      this.showOutcome = true;
-    },
-    playAgain() {
-      this.$emit("play-again");
-    },
-    morePolicyInfo() {
-      $(".modal").modal();
     }
   },
   watch: {
     showCardFront() {
       if (this.showCardFront) {
-        this.shareUrl = `http://www.taiwanbunbun.com/result/${this.user_id}?front`;
+        this.shareUrl = `http://www.taiwanbunbun.com/result/${
+          this.user_id
+        }?front`;
       } else {
-        this.shareUrl =`http://www.taiwanbunbun.com/result/${this.user_id}?back`;
+        this.shareUrl = `http://www.taiwanbunbun.com/result/${
+          this.user_id
+        }?back`;
       }
-      this.shareDesc = `${this.user_name} 從政後會和 ${this.result[0].name} 議員 87% 像！！`;
+      this.shareDesc = `${this.user_name} 從政後會和 ${
+        this.result[0].name
+      } 議員 87% 像！！`;
     }
   }
 };
@@ -517,6 +527,7 @@ a {
       height: 200px;
       border-radius: 50%;
       background: #7c7b79;
+      background: url(../assets/avatar.jpg);
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
