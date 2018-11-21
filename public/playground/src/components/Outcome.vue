@@ -359,8 +359,6 @@ export default {
     setTimeout(() => {
       this.showIntro = false;
       this.showOutcome = true;
-    }, 20000);
-    setTimeout(() => {
       this.renderRadar();
     }, 20000);
   },
@@ -377,59 +375,61 @@ export default {
       $(".modal").modal();
     },
     renderRadar() {
-      const affairs = this.radar[0];
-      const transportation = this.radar[1];
-      const education = this.radar[3];
-      const teen = this.radar[4];
-      const citizen = this.radar[5];
-      const economic = this.radar[2];
-      const ctx = document.getElementById("radar");
-      new Chart(ctx, {
-        type: "radar",
-        data: {
-          labels: [
-            "內政",
-            "交通",
-            ["教育", "文化"],
-            ["青年", "發展"],
-            ["公民", "政治"],
-            "經濟"
-          ],
-          datasets: [
-            {
-              backgroundColor: "rgba(231,195,78,0.6)",
-              data: [
-                affairs,
-                transportation,
-                education,
-                teen,
-                citizen,
-                economic
-              ],
-              borderWidth: 1,
-              pointRadius: 0
-            }
-          ]
-        },
-        options: {
-          tooltips: {
-            enabled: false
+      setTimeout(() => {
+        const affairs = this.radar[0];
+        const transportation = this.radar[1];
+        const education = this.radar[3];
+        const teen = this.radar[4];
+        const citizen = this.radar[5];
+        const economic = this.radar[2];
+        const ctx = document.getElementById("radar");
+        new Chart(ctx, {
+          type: "radar",
+          data: {
+            labels: [
+              "內政",
+              "交通",
+              ["教育", "文化"],
+              ["青年", "發展"],
+              ["公民", "政治"],
+              "經濟"
+            ],
+            datasets: [
+              {
+                backgroundColor: "rgba(231,195,78,0.6)",
+                data: [
+                  affairs,
+                  transportation,
+                  education,
+                  teen,
+                  citizen,
+                  economic
+                ],
+                borderWidth: 1,
+                pointRadius: 0
+              }
+            ]
           },
-          legend: {
-            display: false
-          },
-          scale: {
-            ticks: {
-              beginAtZero: true,
-              maxTicksLimit: 4,
-              min: -1,
-              max: 4,
-              stepSize: 2,
+          options: {
+            tooltips: {
+              enabled: false
+            },
+            legend: {
               display: false
+            },
+            scale: {
+              ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 4,
+                min: -1,
+                max: 4,
+                stepSize: 2,
+                display: false
+              }
             }
           }
-        }
-      });
+        });
+      }, 0);
     }
   },
   watch: {
