@@ -211,6 +211,7 @@ export default {
     this.choosed.forEach(element => {
       this.answers[element]++;
     });
+    this.$emit("get-radar-data", this.answers);
     this.$emit("get-dynamic-questions", this.answers);
   },
   watch: {
