@@ -16,6 +16,12 @@
           <p>......</p>
         </div>
       </div>
+      <div class="col-12 text-center">
+        <div class="button" @click="skipIntro">
+          略過劇情
+          <span class="dot"></span>
+        </div>
+      </div>
     </div>
     <transition name="fade">
       <div class="outcome-wrapper col-12" v-if="showOutcome">
@@ -348,11 +354,11 @@ export default {
     //   "https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/37671776_2078680108811872_5005884623729721344_n.jpg?_nc_cat=110&_nc_ht=scontent.ftpe8-4.fna&oh=04cf8e9f54091b66608b07773ba85ad5&oe=5C7DBF34";
     this.user_id = document.querySelector('#user-id').value;
     this.number = Math.floor(Math.random() * 10 + 1);
+    this.showCardFront = true;
 
     setTimeout(() => {
       this.showIntro = false;
       this.showOutcome = true;
-      this.showCardFront = true;
     }, 20000);
     setTimeout(() => {
       const affairs = this.radar[0];
@@ -411,6 +417,10 @@ export default {
     }, 20000);
   },
   methods: {
+    skipIntro() {
+      this.showIntro = false;
+      this.showOutcome = true;
+    },
     playAgain() {
       this.$emit("play-again");
     },
@@ -455,7 +465,7 @@ a {
   transform-origin: 50% 100%;
   transform: rotateX(12deg);
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 100px);
   position: relative;
 }
 .intro-text {

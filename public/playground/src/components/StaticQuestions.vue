@@ -13,6 +13,12 @@
           <p>......</p>
         </div>
       </div>
+      <div class="col-12 text-center">
+        <div class="button" @click="skipIntro">
+          略過劇情
+          <span class="dot"></span>
+        </div>
+      </div>
     </div>
     <transition mode="out-in">
       <div class="question-wrapper col-12" v-if="showQuestion != null">
@@ -207,6 +213,12 @@ export default {
       this.showQuestion = 1;
     }, 18000);
   },
+  methods: {
+    skipIntro() {
+      this.showIntro = false;
+      this.showQuestion = 1;
+    }
+  },
   beforeDestroy() {
     this.choosed.forEach(element => {
       this.answers[element]++;
@@ -238,7 +250,7 @@ export default {
   transform-origin: 50% 100%;
   transform: rotateX(12deg);
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 100px);
   position: relative;
 }
 .intro-text {
@@ -369,7 +381,7 @@ export default {
           display: block;
           position: absolute;
           height: 4px;
-          width: calc((100vw - 180px)/5);
+          width: calc((100vw - 180px) / 5);
           top: 50%;
           right: 25px;
           transform: translateY(-50%);
