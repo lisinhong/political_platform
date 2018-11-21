@@ -35,10 +35,12 @@ class PlaygroundsController < ApplicationController
     def get_second_step_questions
 
         query = Hash[params.permit([:'0',:'1',:'2',:'3',:'4',:'5']).to_h.sort_by{|k, v| v}.reverse]
-        select_type = query.keys[0..2]
+        select_type = query.keys[0..2].shuffle
 
-        @questions = Question.where(p_type: select_type).order("p_type, id")
-
+        questions1 = Question.where(p_type: select_type[0]).order("p_type, id")
+        questions2 = Question.where(p_type: select_type[1]).order("p_type, id")
+        questions3 = Question.where(p_type: select_type[2]).order("p_type, id")
+        @questions = questions1 + questions2 + questions3
 
         render json: @questions
 
@@ -73,7 +75,7 @@ class PlaygroundsController < ApplicationController
 
 
         politician = Politician.where(id: result_id).order("RANDOM()").first
-        politics = politician.politics
+        politics = politician.politics.order(:id)
      
 
 
