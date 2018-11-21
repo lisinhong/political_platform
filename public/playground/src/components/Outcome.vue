@@ -155,7 +155,7 @@ export default {
       showIntro: true,
       showOutcome: false,
       showCardFront: null,
-      shareUrl: "http://www.taiwanbunbun.com/result/1901888149900371",
+      shareUrl: "https://www.taiwanbunbun.com/result/1901888149900371",
       shareDesc: "",
       fake_result: [
         {
@@ -435,11 +435,11 @@ export default {
   watch: {
     showCardFront() {
       if (this.showCardFront) {
-        this.shareUrl = `http://www.taiwanbunbun.com/result/${
+        this.shareUrl = `https://www.taiwanbunbun.com/result/${
           this.user_id
         }?front`;
       } else {
-        this.shareUrl = `http://www.taiwanbunbun.com/result/${
+        this.shareUrl = `https://www.taiwanbunbun.com/result/${
           this.user_id
         }?back`;
       }
