@@ -51,14 +51,6 @@ a{
 
 <input type="hidden" id="user-name" value="<%= @user.name %>">
 <input type="hidden" id="user-url" value="<%= @user.remote_avatar_url %>">
-
-<input type="hidden" id="affairs-value" value="<%= @result.affairs %>">
-<input type="hidden" id="transportation-value" value="<%= @result.transportation %>">
-<input type="hidden" id="economic-value" value="<%= @result.economic %>">
-<input type="hidden" id="education-value" value="<%= @result.education %>">
-<input type="hidden" id="teen-value" value="<%= @result.teen %>">
-<input type="hidden" id="citizen-value" value="<%= @result.citizen %>">
-
 <input type="hidden" id="politician-id" value="<%= @politician.id %>">
 <input type="hidden" id="politician-name" value="<%= @politician.name %>">
 <input type="hidden" id="politician-url" value="<%= @politician.image_url %>">
@@ -118,13 +110,15 @@ a{
 <script>
 (function() {
   function renderRadar() {
-    const affairs = $("#affairs-value").val();
-    const transportation = $("#transportation-value").val();
-    const education = $("#education-value").val();
-    const teen = $("#teen-value").val();
-    const citizen = $("#citizen-value").val();
-    const economic = $("#economic-value").val();
-    const ctx = document.getElementById("radar");
+    var query = window.location.search.split('&');
+    var affairs = query[1];
+    var transportation = query[2];
+    var education = query[3];
+    var teen = query[4];
+    var citizen = query[5];
+    var economic = query[6];
+    var ctx = document.getElementById("radar");
+
     new Chart(ctx, {
       type: "radar",
       data: {
@@ -163,7 +157,7 @@ a{
           ticks: {
             beginAtZero: true,
             maxTicksLimit: 4,
-            min: 0,
+            min: -1,
             max: 4,
             stepSize: 2,
             display: false
