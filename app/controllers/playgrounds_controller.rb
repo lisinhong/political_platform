@@ -36,11 +36,23 @@ class PlaygroundsController < ApplicationController
 
         query = Hash[params.permit([:'0',:'1',:'2',:'3',:'4',:'5']).to_h.sort_by{|k, v| v}.reverse]
         select_type = query.keys[0..2].shuffle
-
+        puts query
         questions1 = Question.where(p_type: select_type[0]).order("p_type, id")
         questions2 = Question.where(p_type: select_type[1]).order("p_type, id")
         questions3 = Question.where(p_type: select_type[2]).order("p_type, id")
         @questions = questions1 + questions2 + questions3
+
+        result = Result.new(name: current_user.try(:name), 
+        email: current_user.try(:email),   
+        u_id: current_user.try(:uid),
+        affairs: query["0"],
+        transportation: query["1"],
+        economic: query["2"],
+        education: query["3"],
+        teen: query["4"],
+        citizen: query["5"])
+        result.save
+
 
         render json: @questions
 
@@ -79,19 +91,10 @@ class PlaygroundsController < ApplicationController
      
 
 
-        result = Result.new(name: current_user.try(:name), 
-                    email: current_user.try(:email),   
-                    u_id: current_user.try(:uid),
-                    affairs: type_ids.count(0),
-                    transportation: type_ids.count(1),
-                    economic: type_ids.count(2),
-                    education: type_ids.count(3),
-                    teen: type_ids.count(4),
-                    citizen: type_ids.count(5),
-                    politician_id: politician.id)
+        result = Result.where(u_id: current_user.try(:uid)).last
+        result.politician_id = politician.id
         result.save
 
-        
         render json: [politician, politics, result]
 
     end
