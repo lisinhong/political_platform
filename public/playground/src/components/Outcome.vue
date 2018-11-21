@@ -353,7 +353,7 @@ export default {
       this.showIntro = false;
       this.showOutcome = true;
       this.showCardFront = true;
-    }, 12000);
+    }, 20000);
     setTimeout(() => {
       const affairs = this.radar[0];
       const transportation = this.radar[1];
@@ -408,7 +408,7 @@ export default {
           }
         }
       });
-    }, 12000);
+    }, 20000);
   },
   methods: {
     playAgain() {
@@ -466,7 +466,7 @@ a {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  animation: scroll 12s linear;
+  animation: scroll 20s linear;
 }
 .outcome-wrapper {
   min-height: 100vh;
