@@ -23,7 +23,7 @@
     <transition mode="out-in">
       <div class="question-wrapper col-12" v-if="showQuestion != null">
         <transition mode="out-in">
-          <div class="question row justifyÍ-content-between align-items-center" 
+          <div class="question row justify-content-between align-items-center" 
             :class="`question-${question_index+1}`" 
             :key="question_index" 
             v-for="(question, question_index) in questions"
@@ -210,14 +210,12 @@ export default {
   mounted() {
     setTimeout(() => {
       this.showIntro = false;
-      this.showQuestion = 1;
     }, 18000);
   },
   methods: {
     skipIntro() {
       this.showIntro = false;
-      this.showQuestion = 1;
-    }
+    },
   },
   beforeDestroy() {
     this.choosed.forEach(element => {
@@ -230,6 +228,9 @@ export default {
     choosed() {
       this.showQuestion++;
       if (this.showQuestion > 6) this.$emit("next-step");
+    },
+    showIntro() {
+      if (!this.showIntro) this.showQuestion = 1;
     }
   }
 };
