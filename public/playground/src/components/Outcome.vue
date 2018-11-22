@@ -342,7 +342,13 @@ export default {
       user_name: "",
       user_avatar_url: "",
       user_id: "",
-      number: 0
+      number: 0,
+      affairs: this.radar[0],
+      transportation: this.radar[1],
+      education: this.radar[3],
+      teen: this.radar[4],
+      citizen: this.radar[5],
+      economic: this.radar[2],
     };
   },
   props: ["result", "radar"],
@@ -376,12 +382,6 @@ export default {
     },
     renderRadar() {
       setTimeout(() => {
-        const affairs = this.radar[0];
-        const transportation = this.radar[1];
-        const education = this.radar[3];
-        const teen = this.radar[4];
-        const citizen = this.radar[5];
-        const economic = this.radar[2];
         const ctx = document.getElementById("radar");
         new Chart(ctx, {
           type: "radar",
@@ -398,12 +398,12 @@ export default {
               {
                 backgroundColor: "rgba(231,195,78,0.6)",
                 data: [
-                  affairs,
-                  transportation,
-                  education,
-                  teen,
-                  citizen,
-                  economic
+                  this.affairs,
+                  this.transportation,
+                  this.education,
+                  this.teen,
+                  this.citizen,
+                  this.economic
                 ],
                 borderWidth: 1,
                 pointRadius: 0
@@ -437,11 +437,11 @@ export default {
       if (this.showCardFront) {
         this.shareUrl = `https://www.taiwanbunbun.com/result/${
           this.user_id
-        }?front`;
+        }?front&${this.affairs}&${this.transportation}&${this.education}&${this.teen}&${this.citizen}&${this.economic}`;
       } else {
         this.shareUrl = `https://www.taiwanbunbun.com/result/${
           this.user_id
-        }?back`;
+        }?back&${this.affairs}&${this.transportation}&${this.education}&${this.teen}&${this.citizen}&${this.economic}`;
       }
       this.shareDesc = `${this.user_name} 從政後會和 ${
         this.result[0].name
