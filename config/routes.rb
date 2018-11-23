@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get  'playground' => "playgrounds#index"
   post 'playground' => "playgrounds#upload"
   get  'result/:uid' => 'playgrounds#result'
+  get  'table' => 'politicians#table'
   # API 
   post 'api/get_second_step_questions' => "playgrounds#get_second_step_questions"
   post 'api/get_result' => "playgrounds#get_result"

@@ -1,0 +1,38 @@
+<div class="container">
+<table class="table table-bordered">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>email</th>
+      <th>內政</th>
+      <th>交通</th>
+      <th>經濟</th>
+      <th>教育</th>
+      <th>青年</th>
+      <th>公民政治</th>
+      <th>作答時間</th>
+      <th>結果議員</th>      
+    </tr>
+      <tbody>
+        <% @results.each do |result| %>
+        <tr>
+            <td><%= result.id %></td>
+            <td><%= result.name %></td>
+            <td><%= result.email %></td>
+            <td><%= result.affairs %></td>
+            <td><%= result.transportation %></td>
+            <td><%= result.economic %></td>
+            <td><%= result.education %></td>
+            <td><%= result.teen %></td>
+            <td><%= result.citizen %></td>  
+            <td><%= result.created_at.to_datetime() %></td>   
+            <td><a href="/politicians/<%= result.politician.id %>/edit"><%= result.politician.name %></a></td>           
+        </tr>
+        <% end %>
+      <tbody>
+</table>
+
+<%= will_paginate @results, :previous_label => '上一頁', :next_label => '下一頁' %>
+
+</div>
+
